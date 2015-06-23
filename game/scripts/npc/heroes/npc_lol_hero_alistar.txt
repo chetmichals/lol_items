@@ -1,0 +1,22 @@
+"npc_lol_hero_alistar"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"override_hero"				"npc_dota_hero_spirit_breaker"
+	"Model"						"models/heroes/spirit_breaker/spirit_breaker.mdl"			// Model.
+	"MovementTurnRate"			"10"									// Turning rate.
+
+	// Abilities
+	//-------------------------------------------------------------------------------------------------------------
+											
+	"Ability1"					"alistar_pulverize"						// Ability 1
+	"Ability2"					"alistar_test"						// Ability 2
+	"Ability3"					""							// Ability 3
+	"Ability4"					""						// Ability 4
+	"Ability5"					""					// Ability 5
+	"Ability6"					""					// Ability 6
+	
+	
+	"AbilityLayout"				"5"
+	
+}

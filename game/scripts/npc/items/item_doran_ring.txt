@@ -1,0 +1,67 @@
+"item_doran_ring"
+{
+	"ID"							"2001"
+
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"BaseClass"						"item_datadriven"
+	"AbilityTextureName"			"doran_ring"
+
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"						"100"
+	"ItemQuality"					"component"
+
+	//-------------------------------------------------------------------------------------------------------------
+	// Modifer 
+	//-------------------------------------------------------------------------------------------------------------
+	"Modifiers"
+	{
+		"modifier_doran_ring"
+		{
+			"Passive"  "1"
+			"IsHidden" "1" 
+			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" 	"%bonus_intellect"
+				"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health"
+				"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"		"%bonus_mana_regen"
+			}
+
+			"OnKill"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"items/utility.lua"
+					"Function"		"RestoreMana"
+					"manaAmount"	"4"
+				}
+			}
+		} 
+	}
+
+	
+	//-------------------------------------------------------------------------------------------------------------
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_intellect"		"15"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_health"			"60"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_mana_regen"		".6"
+		}
+	}
+}

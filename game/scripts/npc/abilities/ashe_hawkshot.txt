@@ -1,0 +1,87 @@
+//=================================================================================================================
+// Ashe's Hawkshot
+//=================================================================================================================
+"ashe_hawkshot"
+{
+	"AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+	"BaseClass"           "ability_datadriven"
+	"AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_2"
+	"MaxLevel"          "5"
+	// Stats
+	//----------------------------------------------------------------
+	"AbilityCastRange"        "2500 3250 4000 4750 5500"
+	"AbilityManaCost"         "0"
+	"AbilityCastPoint"        ".25"
+	"AbilityCooldown"         "60 55 50 45 40"
+	"AbilityTextureName"            "ashe_hawkshot"
+	
+	"precache"
+        {
+		"particle_folder"			"particles/econ/items/windrunner/windrunner_weapon_sparrowhawk"
+		
+		"soundfile"					"soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+        }
+	"OnUpgrade"
+	{
+		"RemoveAbility"
+		{
+			"AbilityName"	"ashe_greed"
+			"Target"		"CASTER"
+		}
+		"AddAbility"
+		{
+			"AbilityName"	"ashe_greed"
+			"Target"		"CASTER"
+		}
+		"LevelUpAbility"
+		{
+			"AbilityName"	"ashe_greed"
+			"Target"		"CASTER"
+		}
+	}
+	
+	"OnSpellStart"
+	{
+			"LinearProjectile"
+			{
+					"Target"                                "POINT"
+					"EffectName"                    "particles/econ/items/windrunner/windrunner_weapon_sparrowhawk/windrunner_spell_powershot_sparrowhawk.vpcf"
+					"MoveSpeed"                             "1000"
+					"StartRadius"                   "1"
+					"EndRadius"                             "1"
+					"TargetTeams"                   "DOTA_UNIT_TARGET_TEAM_NONE"
+					"TargetTypes"                   "DOTA_UNIT_TARGET_NONE"
+					"TargetFlags"                   "DOTA_UNIT_TARGET_FLAG_NONE"
+					"HasFrontalCone"                "0"
+					"ProvidesVision"                "1"
+					"VisionRadius"                  "500"
+			}
+			"FireSound"
+			{
+					"EffectName"                    "Hero_Clinkz.SearingArrow"
+			}
+	}
+	
+	"OnProjectileFinish"
+	{
+			"FireSound"
+			{
+					"EffectName"                    "Hero_Clinkz.DeathPact.Cast"
+			}
+			
+			"RunScript"
+			{
+				"ScriptFile"        "scripts/vscripts/wip.lua"
+				"Function"          "hawkshotVision"
+				"Target"			"POINT"
+			}
+	}
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"range"					"2500 3250 4000 4750 5500"
+		}		
+	}
+    }

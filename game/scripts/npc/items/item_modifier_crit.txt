@@ -1,0 +1,193 @@
+"item_modifier_crit"
+{
+	"ID"							"5000"
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"BaseClass"						"item_datadriven"
+	"AbilityTextureName"			"doran_blade"
+	"ItemPurchasable" 				"0"
+	"MaxLevel"          			"20"
+
+	// Stats
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"100"
+	"AbilityCastPoint"				"0.0"
+
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+
+	"Modifiers"
+	{
+		"modifier_basic_crtitical_strike_stack"
+		{
+			"TextureName" "doran_blade" 
+			"Properties"
+			{
+			}
+		}
+	
+
+		"modifier_lol_crit_chance_one"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"OnAttackStart"
+			{
+				"Random"
+				{
+					"Chance" "%crit_chance_one"
+					"PseudoRandom" "DOTA_PSEUDO_RANDOM_PHANTOMASSASSIN_CRIT"
+					"OnSuccess"
+					{
+						"RunScript"
+						{
+							"ScriptFile"	"items/utility.lua"
+							"Function"		"ApplyCrit"
+						}								
+					}
+				}
+			}
+		}
+		
+		"modifier_lol_crit_chance_two"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"OnAttackStart"
+			{
+				"Random"
+				{
+					"Chance" "%crit_chance_two"
+					"PseudoRandom" "DOTA_PSEUDO_RANDOM_PHANTOMASSASSIN_CRIT"
+					"OnSuccess"
+					{
+						"RunScript"
+						{
+							"ScriptFile"	"items/utility.lua"
+							"Function"		"ApplyCrit"
+						}								
+					}
+				}
+			}
+		}
+		
+		"modifier_lol_crit_chance_three"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"OnAttackStart"
+			{
+				"Random"
+				{
+					"Chance" "%crit_chance_three"
+					"PseudoRandom" "DOTA_PSEUDO_RANDOM_PHANTOMASSASSIN_CRIT"
+					"OnSuccess"
+					{
+						"RunScript"
+						{
+							"ScriptFile"	"items/utility.lua"
+							"Function"		"ApplyCrit"
+						}								
+					}
+				}
+			}
+		}
+
+		"modifier_lol_crit_chance_four"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"OnAttackStart"
+			{
+				"Random"
+				{
+					"Chance" "%crit_chance_four"
+					"PseudoRandom" "DOTA_PSEUDO_RANDOM_PHANTOMASSASSIN_CRIT"
+					"OnSuccess"
+					{
+						"RunScript"
+						{
+							"ScriptFile"	"items/utility.lua"
+							"Function"		"ApplyCrit"
+						}								
+					}
+				}
+			}
+		}
+
+		"modifier_lol_crit_chance_five"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"OnAttackStart"
+			{
+				"Random"
+				{
+					"Chance" "%crit_chance_four"
+					"PseudoRandom" "DOTA_PSEUDO_RANDOM_PHANTOMASSASSIN_CRIT"
+					"OnSuccess"
+					{
+						"RunScript"
+						{
+							"ScriptFile"	"items/utility.lua"
+							"Function"		"ApplyCrit"
+						}								
+					}
+				}
+			}
+		}
+
+		"modifier_lol_basic_crit"
+		{
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"   "150"
+			}
+			
+			"OnAttackLanded"
+			{
+				"FireEffect"
+				{
+					"EffectName"		 "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+					"EffectAttachType"	 "follow_origin"
+					"Target"			 "TARGET"
+				}	
+				"RemoveModifier"
+				{
+					"ModifierName"		"modifier_lol_basic_crit"
+					"Target"			"CASTER"	
+				}
+			}
+		}
+	}
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"crit_chance_one"				"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
+		}
+		"02"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"crit_chance_two"				"21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40"
+		}
+		"03"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"crit_chance_three"				"41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60"
+		}
+		"04"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"crit_chance_four"				"61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80"
+		}
+		"05"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"crit_chance_five"				"81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100"
+		}
+	}
+}

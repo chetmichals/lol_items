@@ -1,0 +1,46 @@
+//=================================================================================================================
+// HERO: Drow Ranger
+//=================================================================================================================
+"npc_dota_hero_drow_ranger_mod"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"override_hero"				"npc_dota_hero_drow_ranger"
+	"Model"						"models/heroes/drow/drow.mdl"			// Model.
+	"AttackRange"				"600"									// Range within a target can be attacked.
+	"MovementTurnRate"			"10"									// Turning rate.
+	
+	
+	// Attributes
+	//-------------------------------------------------------------------------------------------------------------
+	"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
+	"AttributeBaseStrength"		"0"									// Base strength
+	"AttributeStrengthGain"		"0"									// Strength bonus per level.
+	"AttributeBaseIntelligence"	"0"									// Base intelligence
+	"AttributeIntelligenceGain"	"0"									// Intelligence bonus per level.
+	"AttributeBaseAgility"		"51"									// Base agility
+	"AttributeAgilityGain"		"2.85"									// Agility bonus per level.
+	
+	"AttackDamageMin"			"0"									// Damage range min.
+	"AttackDamageMax"			"0"									// Damage range max.	
+	
+	"StatusHealth"				"528"									// Base health.
+	"StatusHealthRegen"			"1.084"									// Base Health regeneration rate.
+	"StatusMana"				"232"									// Base mana.
+	"StatusManaRegen"			"1.4"									// Base Mana regeneration rate.		
+	
+	"AttackRate"				"1.52"									// BAT.
+	
+	// Abilities
+	//-------------------------------------------------------------------------------------------------------------
+											
+	"Ability1"					"ashe_frost_shot"						// Ability 1
+	"Ability2"					"ashe_volly"							// Ability 2
+	"Ability3"					"ashe_hawkshot"							// Ability 3
+	"Ability4"					"ashe_focus_crit"						// Ability 4
+	"Ability5"					"ashe_focus_passive"					// Ability 5
+	"Ability6"					"ashe_crystal_arrow"					// Ability 6
+	
+	
+	"AbilityLayout"				"5"
+}

@@ -1,0 +1,99 @@
+//=================================================================================================================
+// Alistar's Pulverize
+//=================================================================================================================	
+"alistar_pulverize"
+{
+	"BaseClass"           	"ability_datadriven"
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"MaxLevel"          "5"
+	
+	"precache"
+        {
+		"particle_folder"          	"particles/units/heroes/hero_mirana"
+		
+		"soundfile"					"soundevents/voscripts/game_sounds_vo_tidehunter.vsndevts"
+		
+        }
+	
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"365"
+	"AbilityCastPoint"				"0" 						// Time before spell goes off when cast
+	
+	"OnSpellStart"
+	{
+		"Damage"
+		{
+			"Type"			"DAMAGE_TYPE_MAGICAL"
+			"Damage"		"%damage"
+			"Target"
+			{
+				"Center"	"CASTER"
+				"Radius"	"%impact_radius"
+				"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_OTHER"
+			}
+		}
+		
+		"Knockback"
+		{
+			"Target"
+			{
+				"Center"	"CASTER"
+				"Radius"	"%impact_radius"
+				"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+			}
+			"Duration"	"1"
+			"Distance"	"0"
+			"Height"	"256"
+		}
+		"ApplyModifier"
+			{
+				"Target"
+				{
+					"Center"	"CASTER"
+					"Radius"	"%impact_radius"
+					"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				}
+				"ModifierName" 	"pulverize_stun"
+			}
+		"FireSound"
+		{
+				"EffectName"                    "tidehunter_tide_rival_04"
+		}
+	}
+	
+	"Modifiers"
+	{
+		"pulverize_stun"
+		{
+			"Duration" 		"%stun_duration"
+			"States"
+			 {
+			   "MODIFIER_STATE_STUNNED" "MODIFIER_STATE_VALUE_ENABLED"
+			 }
+		}
+	}
+	
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"impact_radius"			"365"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"damage"				"60 105 150 195 240"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"stun_duration"			"1.5"
+		}
+	}
+}

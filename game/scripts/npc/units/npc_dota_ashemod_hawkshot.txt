@@ -1,0 +1,12 @@
+"npc_dota_ashemod_hawkshot"
+{
+	// General
+	"Model"						"models/heroes/beastmaster/beastmaster_bird.mdl"// Model.
+	"BaseClass"					"npc_dota_creature"
+	"SoundSet"					"0"					// Name of sound set.
+	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+	"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+	"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+	"VisionDaytimeRange"		"1000"		// Range of vision during day light.
+	"VisionNighttimeRange"		"1000"		// Range of vision at night time.
+}	

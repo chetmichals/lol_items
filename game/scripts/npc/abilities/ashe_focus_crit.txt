@@ -1,0 +1,36 @@
+//=================================================================================================================
+// Ashe's Focus Criticle Hit
+//=================================================================================================================	
+"ashe_focus_crit"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"           	"juggernaut_blade_dance"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	"MaxLevel"          "1"
+	"AbilityTextureName"            "ashe_focus"
+	"OnCastbar"						"0"
+	"OnLearnbar"					"0"
+	
+	"precache"
+        {			
+		"soundfile"					"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+		
+        }
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"blade_dance_crit_mult"		"200"
+		}
+		"02"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"blade_dance_crit_chance"	"100"
+		}
+	}
+}

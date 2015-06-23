@@ -1,0 +1,60 @@
+"alistar_test"
+{
+	"AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"BaseClass"           "ability_datadriven"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	
+	"MaxLevel"          "5"
+	// Stats
+	//----------------------------------------------------------------
+	"AbilityCastRange"        "8000"
+	"AbilityManaCost"         "60"
+	"AbilityCastPoint"        ".25"
+	"AbilityCooldown"         "0"
+	"AbilityUnitDamageType"     "DAMAGE_TYPE_PHYSICAL"
+	
+	"precache"
+        {
+		"particle_folder"          	"particles/econ/items/mirana/mirana_crescent_arrow"
+		
+		"soundfile"					"soundevents/game_sounds_heroes/game_sounds_vo_tidehunter.vsndevts"
+        }
+	"OnSpellStart"
+	{
+		"FireSound"
+		{
+				"EffectName"                    "tidehunter_tide_rival_04"
+		}
+		"RunScript"
+		{
+			"Target" 						"TARGET"
+			"ScriptFile"     				"scripts/vscripts/alistar.lua"
+			"Function"	 					"saveTarget"     
+			"Duration"						"1"
+		}
+		"ApplyMotionController"
+		{
+			"Target" 						"CASTER"
+			"ScriptFile"     				"scripts/vscripts/alistar.lua"
+			"HorizontalControlFunction"	 	"headbuttDash"     
+			"Duration"						"5"
+		}
+		"TrackingProjectile"
+		{
+			"Dodgeable" "0"
+		}
+	}
+	"Modifiers"
+	{
+		"headbutt_charge"
+		{
+			"Duration" 		"1"
+			"States"
+			 {
+			   "MODIFIER_STATE_COMMAND_RESTRICTED" "MODIFIER_STATE_VALUE_ENABLED"
+			 }
+		}
+	}
+}

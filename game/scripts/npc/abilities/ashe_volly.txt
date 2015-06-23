@@ -1,0 +1,74 @@
+//=================================================================================================================
+// Ashe's Volly
+//=================================================================================================================
+"ashe_volly"
+{
+	"AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_POINT"
+	"BaseClass"           "ability_datadriven"
+	"AbilityCastAnimation"      "ACT_DOTA_ATTACK"
+	"MaxLevel"          "5"
+	"AbilityTextureName"            "ashe_volley"
+	// Stats
+	//----------------------------------------------------------------
+	"AbilityCastRange"        "1200"
+	"AbilityManaCost"         "60"
+	"AbilityCastPoint"        ".25"
+	"AbilityCooldown"         "16 13 10 7 4"
+	"AbilityUnitDamageType"     "DAMAGE_TYPE_PHYSICAL"
+	
+	"precache"
+        {
+		"particle_folder"          	"particles/econ/items/mirana/mirana_crescent_arrow"
+		
+		"soundfile"					"soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"
+        }
+	
+	"OnSpellStart"
+	{
+	  "RunScript"
+	  {
+		"ScriptFile"        "scripts/vscripts/wip.lua"
+		"Function"          "volly"
+		"Target"            "POINT"
+		"FixedDistance"                                     "1200"
+		"EffectName"                    "particles/econ/items/mirana/mirana_crescent_arrow/mirana_spell_crescent_arrow.vpcf"
+		"MoveSpeed"                             "2000"
+		"StartRadius"                   "16"
+		"EndRadius"                             "16"
+		"TargetTeams"                   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"TargetTypes"                   "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"HasFrontalCone"                "1"
+		"ProvidesVision"                "1"
+		"VisionRadius"                  "400"
+	  }      
+	  "FireSound"
+		{
+				"EffectName"                    "Hero_Silencer.GlaivesOfWisdom"
+		}
+	}
+	
+	"OnProjectileHitUnit"
+	{
+			"FireSound"
+			{
+					"EffectName"                    "Hero_Silencer.GlaivesOfWisdom.Damage"
+			}
+			
+			"RunScript"
+			{
+				"ScriptFile"        "scripts/vscripts/wip.lua"
+				"Function"          "vollyHit"
+				"Target"            "TARGET"
+				//"Type"				"DAMAGE_TYPE_PHYSICAL"
+				"BonusDamage"		"%bonus_damage"
+			}
+	}
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"bonus_damage"						"40 50 60 70 80"
+		}
+	}	
+    }

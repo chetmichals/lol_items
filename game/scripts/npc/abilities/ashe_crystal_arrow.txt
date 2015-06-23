@@ -1,0 +1,144 @@
+//=================================================================================================================
+// Ashe's Crystal Arrow
+//=================================================================================================================	
+"ashe_crystal_arrow"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"           		"ability_datadriven"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+	"AbilityTextureName"            "ashe_enchanted_crystal_arrow"
+	
+	"precache"
+        {
+		"particle_folder"          	"particles/units/heroes/hero_mirana"
+		"particle_folder"          	"particles/econ/items/mirana/mirana_crescent_arrow"
+		
+		"soundfile"					"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+		
+        }
+	
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastPoint"				".25"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"100 90 80"
+	"AbilityDuration"				"3.11 3.11 3.11 3.11"
+
+	// Damage.
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityDamage"					"250 425 600"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"100"
+
+	
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"        "scripts/vscripts/wip.lua"
+			"Function"          "crystal_arrow_start"
+			"Target"            "POINT"
+			"EffectName"                    "particles/units/heroes/hero_mirana/mirana_spell_arrow.vpcf"
+			"MoveSpeed"                             "1800"
+			"StartRadius"                   "64"
+			"EndRadius"                     "64"
+			"TargetTeams"                   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+			"TargetTypes"                   "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+			"UnitTargetFlags" 				"DOTA_UNIT_TARGET_FLAG_NONE"
+			"HasFrontalCone"                "0"
+			"ProvidesVision"                "1"
+			"VisionRadius"                  "500"
+			"FixedDistance"					"99999" //Is be global
+		}
+		"FireSound"
+		{
+				"EffectName"                    "Hero_Mirana.ArrowCast"
+		}
+	}
+	
+	"OnProjectileHitUnit"
+	{		
+		"DeleteOnHit"                   "true"
+		"RunScript"
+		{
+			"ScriptFile"        "scripts/vscripts/wip.lua"
+			"Function"          "crystal_arrow_hit"
+			"Target"            "TARGET"
+			"Damage"			"%damage"
+			//"Type"				"DAMAGE_TYPE_MAGICAL"
+		}
+		"FireSound"
+		{
+				"EffectName"                    "Hero_Mirana.ArrowImpact"
+		}
+		"Damage"
+		{
+			"Target"
+			{
+				"Center"	"TARGET"
+				"Radius"	"%aoe_radius"
+				"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+			}
+			"Type" 		"DAMAGE_TYPE_MAGICAL"
+			"Damage"	"%damage"
+		}
+		"ApplyModifier"
+		{
+			"Target"
+			{
+				"Center"	"TARGET"
+				"Radius"	"%aoe_radius"
+				"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+			}
+			"ModifierName" 	"crystal_arrow_slow"
+		}
+	}
+	
+	"Modifiers"
+	{
+		"crystal_arrow_slow"
+		{
+			"Duration" 		"3"
+			"Properties"
+			 {
+			   "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-50"
+			 }
+		}
+	}
+	
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"aoe_radius"			"250"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"damage"				"125 212.5 300"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"min_stun"				"1.0"
+		}
+		"04"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"max_stun"				"3.5"
+		}
+		"05"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"slow"					"50"
+		}
+	}
+}

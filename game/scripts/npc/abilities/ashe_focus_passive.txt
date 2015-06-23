@@ -1,0 +1,51 @@
+//=================================================================================================================
+// Ashe's Focus Passive
+//=================================================================================================================	
+"ashe_focus_passive"
+{
+	"BaseClass"           	"ability_datadriven"
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	"MaxLevel"          "1"
+			
+	"OnUpgrade"
+	{	
+		"RunScript"
+		{
+			"ScriptFile"        "scripts/vscripts/wip.lua"
+			"Function"          "FocusThinkerStarter"
+			"Target"            "caster"
+		}
+	
+		"ApplyModifier"
+		{
+			"Target"		"CASTER"
+			"ModifierName"	"ashe_focus"
+		}
+	}
+	"Modifiers"
+	{
+		"ashe_focus"
+		{
+			"IsDebuff"				"0"
+			"IsHidden"				"1"
+			"OnAttackLanded"
+			{
+				"RunScript"
+				{
+					"ScriptFile"        "scripts/vscripts/wip.lua"
+					"Function"          "ashe_attack_hit"
+					"Target"            "CASTER"
+				}
+			}
+			"OnAttackStart"
+			{
+				"RunScript"
+				{
+					"ScriptFile"        "scripts/vscripts/wip.lua"
+					"Function"          "ashe_attack_start"
+					"Target"            "CASTER"
+				}
+			}
+		}
+	}
+}

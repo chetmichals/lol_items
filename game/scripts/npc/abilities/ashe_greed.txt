@@ -1,0 +1,43 @@
+//=================================================================================================================
+// Ashe's Hawkshot Passive
+//=================================================================================================================	
+"ashe_greed"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"           		"alchemist_goblins_greed"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	"MaxLevel"          "1"
+
+	"precache"
+        {
+		"particle_folder"			"particles/units/heroes/hero_alchemist"			
+        }
+	
+	
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"duration"				"1"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_gold"			"3"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_bonus_gold"		"3"
+		}
+		"04"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_gold_cap"		"3"
+		}
+	}
+}

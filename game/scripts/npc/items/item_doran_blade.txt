@@ -1,0 +1,62 @@
+"item_doran_blade"
+{
+	"ID"							"2003"
+
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"BaseClass"						"item_datadriven"
+	"AbilityTextureName"			"doran_blade"
+
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"						"100"
+	"ItemQuality"					"component"
+
+	"Modifiers"
+	{
+		"modifier_doran_blade"
+		{
+			"Passive"  "1"
+			"IsHidden" "1" 
+			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health"
+				"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%ad"
+			}
+			"OnAttackLanded"
+			{
+				"Lifesteal"
+				{
+					"Target" 				"CASTER"
+					"LifestealPercent"		"%leech"
+				}
+			}
+		} 
+	}
+
+	
+	//-------------------------------------------------------------------------------------------------------------
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_health"			"70"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"leech"					"3"
+		}	
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"ad"					"7"
+		}
+	}
+
+}

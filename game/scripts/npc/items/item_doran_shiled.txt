@@ -1,0 +1,55 @@
+"item_doran_shield"
+{
+	"ID"							"2002"
+
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"BaseClass"						"item_datadriven"
+	"AbilityTextureName"			"doran_shield"
+
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"						"100"
+	"ItemQuality"					"component"
+
+	"Modifiers"
+	{
+		"modifier_doran_shield"
+		{
+			"Passive"  "1"
+			"IsHidden" "1" 
+			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health"
+				"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%bonus_heal"
+				"MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK"	"%damage_block"
+			}
+		} 
+	}
+
+	
+	//-------------------------------------------------------------------------------------------------------------
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_health"			"80"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"bonus_heal"			"1.2"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"damage_block"			"8"
+		}
+	}
+
+}
