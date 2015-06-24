@@ -5,7 +5,7 @@
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	"BaseClass"						"item_datadriven"
-	"AbilityTextureName"			"doran_blade"
+	"AbilityTextureName"			"leoric_critical_strike"
 	"ItemPurchasable" 				"0"
 	"MaxLevel"          			"20"
 
@@ -21,7 +21,7 @@
 	{
 		"modifier_basic_crtitical_strike_stack"
 		{
-			"TextureName" "doran_blade" 
+			"TextureName" "leoric_critical_strike" 
 			"Properties"
 			{
 			}

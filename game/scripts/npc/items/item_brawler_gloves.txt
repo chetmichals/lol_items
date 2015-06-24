@@ -1,30 +1,35 @@
-"item_speed_dagger"
+"item_brawler_gloves"
 {
-	"ID"							"2004"
+	"ID"							"2010"
 
 	// General
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	"BaseClass"						"item_datadriven"
-	"AbilityTextureName"			"speed_dagger"
+	"AbilityTextureName"			"brawler_gloves"
 
 	// Item Info
 	//-------------------------------------------------------------------------------------------------------------
 	"ItemCost"						"100"
 	"ItemQuality"					"component"
 
-	"Modifiers"
+	"OnEquip"
 	{
-		"modifier_speed_dagger"
+		"RunScript"
 		{
-			"Passive"  "1"
-			"IsHidden" "1" 
-			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-			"Properties"
-			{
-				"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"			"%bonus_attack_speed"
-			}
-		} 
+			"ScriptFile"	"items/utility.lua"
+			"Function"		"AddCrit"
+			"critAmount"	"%crit_amount"
+		}
+	}
+	"OnUnEquip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"	"items/utility.lua"
+			"Function"		"RemoveCrit"
+			"critAmount"	"%crit_amount"
+		}
 	}
 
 	
@@ -36,7 +41,7 @@
 		"01"
 		{
 			"var_type"				"FIELD_INTEGER"
-			"bonus_attack_speed"			"15"
+			"crit_amount"			"8"
 		}
 	}
 

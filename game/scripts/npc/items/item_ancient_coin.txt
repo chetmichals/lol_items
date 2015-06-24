@@ -1,0 +1,92 @@
+"item_ancient_coin"
+{
+	"ID"							"2008"
+
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"BaseClass"						"item_datadriven"
+	"AbilityTextureName"			"ancient_coin"
+
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"						"100"
+	"ItemQuality"					"component"
+
+	//-------------------------------------------------------------------------------------------------------------
+	// Modifer 
+	//-------------------------------------------------------------------------------------------------------------
+	"Modifiers"
+	{
+		"modifier_ancient_coin"
+		{
+			"Passive"  "1"
+			"IsHidden" "1" 
+			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" 	"%mana_regen"
+			}
+		}
+
+		"modifier_ancient_coin_cash_aura"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"IsDebuff"			"0"
+			"TextureName" 		"buyback" 
+	
+			"Aura"					"modifier_ancient_coin_cash_aura_enemy"
+			"Aura_Radius"			"%aura_radius"
+			"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+			"Aura_Types"			"DOTA_UNIT_TARGET_CREEP"
+			"Aura_ApplyToCaster" 	"0"
+		}
+
+		"modifier_ancient_coin_cash_aura_enemy"
+		{
+			"IsBuff"	"0"
+			"TextureName" 		"modifier_buyback_gold_penalty" 
+			"IsHidden"			"1"
+
+			"OnDeath"
+			{
+				"RunScript"
+				{
+					"ScriptFile"		"items/favorBuff.lua"
+					"Function"			"GrantFavor"
+					"goldAmount"		"%bonus_gold"
+					"healAmount"		"%heal_amount"
+				}
+			}			
+		}
+	}
+
+	
+	//-------------------------------------------------------------------------------------------------------------
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"mana_regen"			"5"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"aura_radius"		"1400"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_gold"			"3"
+		}
+		"04"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"heal_amount"			"5"
+		}
+	}
+}

@@ -1,28 +1,28 @@
-"item_speed_dagger"
+"item_long_sword"
 {
-	"ID"							"2004"
+	"ID"							"2014"
 
 	// General
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	"BaseClass"						"item_datadriven"
-	"AbilityTextureName"			"speed_dagger"
+	"AbilityTextureName"			"long_sword"
 
 	// Item Info
 	//-------------------------------------------------------------------------------------------------------------
-	"ItemCost"						"100"
+	"ItemCost"						"360"
 	"ItemQuality"					"component"
 
 	"Modifiers"
 	{
-		"modifier_speed_dagger"
+		"modifier_long_sword"
 		{
 			"Passive"  "1"
 			"IsHidden" "1" 
 			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
 			"Properties"
 			{
-				"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"			"%bonus_attack_speed"
+				"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%ad"
 			}
 		} 
 	}
@@ -36,7 +36,7 @@
 		"01"
 		{
 			"var_type"				"FIELD_INTEGER"
-			"bonus_attack_speed"			"15"
+			"ad"					"10"
 		}
 	}
 

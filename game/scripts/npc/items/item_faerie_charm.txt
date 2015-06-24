@@ -1,28 +1,28 @@
-"item_speed_dagger"
+"item_faerie_charm"
 {
-	"ID"							"2004"
+	"ID"							"2013"
 
 	// General
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	"BaseClass"						"item_datadriven"
-	"AbilityTextureName"			"speed_dagger"
+	"AbilityTextureName"			"faerie_charm"
 
 	// Item Info
 	//-------------------------------------------------------------------------------------------------------------
-	"ItemCost"						"100"
+	"ItemCost"						"180"
 	"ItemQuality"					"component"
 
 	"Modifiers"
 	{
-		"modifier_speed_dagger"
+		"modifier_faerie_charm"
 		{
 			"Passive"  "1"
 			"IsHidden" "1" 
 			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
 			"Properties"
 			{
-				"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"			"%bonus_attack_speed"
+				"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"			"%mana_regen"
 			}
 		} 
 	}
@@ -36,7 +36,7 @@
 		"01"
 		{
 			"var_type"				"FIELD_INTEGER"
-			"bonus_attack_speed"			"15"
+			"mana_regen"			"5"
 		}
 	}
 

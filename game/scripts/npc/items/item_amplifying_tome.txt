@@ -1,28 +1,31 @@
-"item_speed_dagger"
+"item_amplifying_tome"
 {
-	"ID"							"2004"
+	"ID"							"2006"
 
 	// General
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	"BaseClass"						"item_datadriven"
-	"AbilityTextureName"			"speed_dagger"
+	"AbilityTextureName"			"amplifying_tome"
 
 	// Item Info
 	//-------------------------------------------------------------------------------------------------------------
 	"ItemCost"						"100"
 	"ItemQuality"					"component"
 
+	//-------------------------------------------------------------------------------------------------------------
+	// Modifer 
+	//-------------------------------------------------------------------------------------------------------------
 	"Modifiers"
 	{
-		"modifier_speed_dagger"
+		"modifier_amplifying_tome"
 		{
 			"Passive"  "1"
 			"IsHidden" "1" 
 			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
 			"Properties"
 			{
-				"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"			"%bonus_attack_speed"
+				"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" 	"%bonus_intellect"
 			}
 		} 
 	}
@@ -36,8 +39,7 @@
 		"01"
 		{
 			"var_type"				"FIELD_INTEGER"
-			"bonus_attack_speed"			"15"
+			"bonus_intellect"		"20"
 		}
 	}
-
 }

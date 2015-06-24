@@ -1,5 +1,324 @@
 "DOTAAbilities"
 {
+	"item_amplifying_tome"
+	{
+		"ID"							"2006"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"amplifying_tome"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemQuality"					"component"
+	
+		//-------------------------------------------------------------------------------------------------------------
+		// Modifer 
+		//-------------------------------------------------------------------------------------------------------------
+		"Modifiers"
+		{
+			"modifier_amplifying_tome"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" 	"%bonus_intellect"
+				}
+			} 
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"20"
+			}
+		}
+	}
+	"item_ancient_coin"
+	{
+		"ID"							"2008"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"ancient_coin"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemQuality"					"component"
+	
+		//-------------------------------------------------------------------------------------------------------------
+		// Modifer 
+		//-------------------------------------------------------------------------------------------------------------
+		"Modifiers"
+		{
+			"modifier_ancient_coin"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" 	"%mana_regen"
+				}
+			}
+	
+			"modifier_ancient_coin_cash_aura"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"TextureName" 		"buyback" 
+		
+				"Aura"					"modifier_ancient_coin_cash_aura_enemy"
+				"Aura_Radius"			"%aura_radius"
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_CREEP"
+				"Aura_ApplyToCaster" 	"0"
+			}
+	
+			"modifier_ancient_coin_cash_aura_enemy"
+			{
+				"IsBuff"	"0"
+				"TextureName" 		"modifier_buyback_gold_penalty" 
+				"IsHidden"			"1"
+	
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"items/favorBuff.lua"
+						"Function"			"GrantFavor"
+						"goldAmount"		"%bonus_gold"
+						"healAmount"		"%heal_amount"
+					}
+				}			
+			}
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_regen"			"5"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"aura_radius"		"1400"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_gold"			"3"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_amount"			"5"
+			}
+		}
+	}
+	"item_bf_sword"
+	{
+		"ID"							"2007"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"bf_sword"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemQuality"					"component"
+	
+		//-------------------------------------------------------------------------------------------------------------
+		// Modifer 
+		//-------------------------------------------------------------------------------------------------------------
+		"Modifiers"
+		{
+			"modifier_bf_sword"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" 	"%bonus_agility"
+				}
+			} 
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agility"			"50"
+			}
+		}
+	}
+	"item_blasting_wand"
+	{
+		"ID"							"2009"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"blasting_wand"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"860"
+		"ItemQuality"					"component"
+	
+		//-------------------------------------------------------------------------------------------------------------
+		// Modifer 
+		//-------------------------------------------------------------------------------------------------------------
+		"Modifiers"
+		{
+			"modifier_blasting_wand"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" 	"%bonus_intellect"
+				}
+			} 
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"40"
+			}
+		}
+	}
+	"item_boots_of_speed"
+	{
+		"ID"							"2011"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"boots_of_speed"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"325"
+		"ItemQuality"					"component"
+	
+		//-------------------------------------------------------------------------------------------------------------
+		// Modifer 
+		//-------------------------------------------------------------------------------------------------------------
+		"Modifiers"
+		{
+			"modifier_boots_of_speed"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" 	"%bonus_speed"
+				}
+			} 
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_speed"			"25"
+			}
+		}
+	}
+	"item_brawler_gloves"
+	{
+		"ID"							"2010"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"brawler_gloves"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemQuality"					"component"
+	
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/utility.lua"
+				"Function"		"AddCrit"
+				"critAmount"	"%crit_amount"
+			}
+		}
+		"OnUnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/utility.lua"
+				"Function"		"RemoveCrit"
+				"critAmount"	"%crit_amount"
+			}
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"crit_amount"			"8"
+			}
+		}
+	
+	}
 	"item_cloak_of_agility"
 	{
 		"ID"							"2005"
@@ -47,6 +366,51 @@
 			}
 		}
 	
+	}
+	"item_cloth_armor"
+	{
+		"ID"							"2012"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"cloth_armor"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"300"
+		"ItemQuality"					"component"
+	
+		//-------------------------------------------------------------------------------------------------------------
+		// Modifer 
+		//-------------------------------------------------------------------------------------------------------------
+		"Modifiers"
+		{
+			"modifier_cloth_armor"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" 	"%armor"
+				}
+			} 
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"armor"					"2.5"
+			}
+		}
 	}
 	"item_doran_blade"
 	{
@@ -232,6 +596,49 @@
 		}
 	
 	}
+	"item_faerie_charm"
+	{
+		"ID"							"2013"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"faerie_charm"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"180"
+		"ItemQuality"					"component"
+	
+		"Modifiers"
+		{
+			"modifier_faerie_charm"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"			"%mana_regen"
+				}
+			} 
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_regen"			"5"
+			}
+		}
+	
+	}
 	//========================================================
 	// Stat Mods
 	//========================================================
@@ -358,6 +765,49 @@
 			}
 		}
 	}
+	"item_long_sword"
+	{
+		"ID"							"2014"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"long_sword"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"360"
+		"ItemQuality"					"component"
+	
+		"Modifiers"
+		{
+			"modifier_long_sword"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%ad"
+				}
+			} 
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ad"					"10"
+			}
+		}
+	
+	}
 	"item_modifier_crit"
 	{
 		"ID"							"5000"
@@ -365,7 +815,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"doran_blade"
+		"AbilityTextureName"			"leoric_critical_strike"
 		"ItemPurchasable" 				"0"
 		"MaxLevel"          			"20"
 	
@@ -381,7 +831,7 @@
 		{
 			"modifier_basic_crtitical_strike_stack"
 			{
-				"TextureName" "doran_blade" 
+				"TextureName" "leoric_critical_strike" 
 				"Properties"
 				{
 				}
@@ -551,6 +1001,94 @@
 			}
 		}
 	}
+	"item_needlessly_large_rod"
+	{
+		"ID"							"2015"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"needlessly_large_rod"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1600"
+		"ItemQuality"					"component"
+	
+		//-------------------------------------------------------------------------------------------------------------
+		// Modifer 
+		//-------------------------------------------------------------------------------------------------------------
+		"Modifiers"
+		{
+			"modifier_needlessly_large_rod"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" 	"%bonus_intellect"
+				}
+			} 
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"80"
+			}
+		}
+	}
+	"item_pickaxe"
+	{
+		"ID"							"2016"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"pickaxe"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"875"
+		"ItemQuality"					"component"
+	
+		"Modifiers"
+		{
+			"modifier_long_sword"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%ad"
+				}
+			} 
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ad"					"25"
+			}
+		}
+	
+	}
 	"item_speed_dagger"
 	{
 		"ID"							"2004"
@@ -568,7 +1106,7 @@
 	
 		"Modifiers"
 		{
-			"modifier_doran_blade"
+			"modifier_speed_dagger"
 			{
 				"Passive"  "1"
 				"IsHidden" "1" 
