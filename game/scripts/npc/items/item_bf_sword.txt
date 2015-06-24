@@ -16,18 +16,24 @@
 	//-------------------------------------------------------------------------------------------------------------
 	// Modifer 
 	//-------------------------------------------------------------------------------------------------------------
-	"Modifiers"
+	"OnEquip"
 	{
-		"modifier_bf_sword"
+		"RunScript"
 		{
-			"Passive"  "1"
-			"IsHidden" "1" 
-			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-			"Properties"
-			{
-				"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" 	"%bonus_agility"
-			}
-		} 
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"AddADItem"
+			"ad"					"%attack_damage"
+		}
+	}
+
+	"OnUnequip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"RemoveADItem"
+			"ad"					"%attack_damage"
+		}
 	}
 
 	
@@ -39,7 +45,7 @@
 		"01"
 		{
 			"var_type"				"FIELD_INTEGER"
-			"bonus_agility"			"50"
+			"attack_damage"			"50"
 		}
 	}
 }

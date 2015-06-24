@@ -1,58 +1,30 @@
-"item_doran_blade"
+"item_sapphire_crystal"
 {
-	"ID"							"2003"
+	"ID"							"2020"
 
 	// General
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	"BaseClass"						"item_datadriven"
-	"AbilityTextureName"			"doran_blade"
+	"AbilityTextureName"			"sapphire_crystal"
 
 	// Item Info
 	//-------------------------------------------------------------------------------------------------------------
-	"ItemCost"						"100"
+	"ItemCost"						"400"
 	"ItemQuality"					"component"
 
 	"Modifiers"
 	{
-		"modifier_doran_blade"
+		"modifier_ruby_crystal"
 		{
 			"Passive"  "1"
 			"IsHidden" "1" 
 			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
 			"Properties"
 			{
-				"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health"
-			}
-			"OnAttackLanded"
-			{
-				"Lifesteal"
-				{
-					"Target" 				"CASTER"
-					"LifestealPercent"		"%leech"
-				}
+				"MODIFIER_PROPERTY_MANA_BONUS"			"%bonus_mana"
 			}
 		} 
-	}
-
-	"OnEquip"
-	{
-		"RunScript"
-		{
-			"ScriptFile"			"items/utility.lua"
-			"Function"				"AddADItem"
-			"ad"			"%attack_damage"
-		}
-	}
-
-	"OnUnequip"
-	{
-		"RunScript"
-		{
-			"ScriptFile"			"items/utility.lua"
-			"Function"				"RemoveADItem"
-			"ad"			"%attack_damage"
-		}
 	}
 
 	
@@ -64,17 +36,7 @@
 		"01"
 		{
 			"var_type"				"FIELD_INTEGER"
-			"bonus_health"			"70"
-		}
-		"02"
-		{
-			"var_type"				"FIELD_INTEGER"
-			"leech"					"3"
-		}	
-		"03"
-		{
-			"var_type"				"FIELD_INTEGER"
-			"attack_damage"					"7"
+			"bonus_mana"			"200"
 		}
 	}
 

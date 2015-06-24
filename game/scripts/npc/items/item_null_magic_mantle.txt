@@ -1,47 +1,25 @@
-"item_doran_blade"
+"item_null_magic_mantle"
 {
-	"ID"							"2003"
+	"ID"							"2017"
 
 	// General
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	"BaseClass"						"item_datadriven"
-	"AbilityTextureName"			"doran_blade"
+	"AbilityTextureName"			"null_magic_mantle"
 
 	// Item Info
 	//-------------------------------------------------------------------------------------------------------------
-	"ItemCost"						"100"
+	"ItemCost"						"875"
 	"ItemQuality"					"component"
-
-	"Modifiers"
-	{
-		"modifier_doran_blade"
-		{
-			"Passive"  "1"
-			"IsHidden" "1" 
-			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-			"Properties"
-			{
-				"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health"
-			}
-			"OnAttackLanded"
-			{
-				"Lifesteal"
-				{
-					"Target" 				"CASTER"
-					"LifestealPercent"		"%leech"
-				}
-			}
-		} 
-	}
 
 	"OnEquip"
 	{
 		"RunScript"
 		{
 			"ScriptFile"			"items/utility.lua"
-			"Function"				"AddADItem"
-			"ad"			"%attack_damage"
+			"Function"				"AddMagicResistItem"
+			"ad"					"%attack_damage"
 		}
 	}
 
@@ -50,8 +28,8 @@
 		"RunScript"
 		{
 			"ScriptFile"			"items/utility.lua"
-			"Function"				"RemoveADItem"
-			"ad"			"%attack_damage"
+			"Function"				"RemoveMagicResistItem"
+			"ad"					"%magic_resistance"
 		}
 	}
 
@@ -64,17 +42,7 @@
 		"01"
 		{
 			"var_type"				"FIELD_INTEGER"
-			"bonus_health"			"70"
-		}
-		"02"
-		{
-			"var_type"				"FIELD_INTEGER"
-			"leech"					"3"
-		}	
-		"03"
-		{
-			"var_type"				"FIELD_INTEGER"
-			"attack_damage"					"7"
+			"magic_resistance"		"25"
 		}
 	}
 

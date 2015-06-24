@@ -1,39 +1,38 @@
-"item_pickaxe"
+"item_rejuvenation_bead"
 {
-	"ID"							"2016"
+	"ID"							"2018"
 
 	// General
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	"BaseClass"						"item_datadriven"
-	"AbilityTextureName"			"pickaxe"
+	"AbilityTextureName"			"rejuvenation_bead"
 
 	// Item Info
 	//-------------------------------------------------------------------------------------------------------------
-	"ItemCost"						"875"
+	"ItemCost"						"180"
 	"ItemQuality"					"component"
 
-	"OnEquip"
+	"Modifiers"
 	{
-		"RunScript"
+		"modifier_item_rejuvenation_bead"
 		{
-			"ScriptFile"			"items/utility.lua"
-			"Function"				"AddADItem"
-			"ad"					"%attack_damage"
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"Attributes" 		"MODIFIER_ATTRIBUTE_MULTIPLE"
+						
+			"ThinkInterval" 		".5"
+			"OnIntervalThink"  //Heal the owner based off of base HP regen.
+			{
+				"RunScript"
+				{
+					"ScriptFile"					"items/utility.lua"
+					"Function"						"HP5Heal"
+					"healPercent"					"%healPercent"
+				}
+			}
 		}
 	}
-
-	"OnUnequip"
-	{
-		"RunScript"
-		{
-			"ScriptFile"			"items/utility.lua"
-			"Function"				"RemoveADItem"
-			"ad"					"%attack_damage"
-		}
-	}
-
-	
 	//-------------------------------------------------------------------------------------------------------------
 	// Special	
 	//-------------------------------------------------------------------------------------------------------------
@@ -41,8 +40,8 @@
 	{
 		"01"
 		{
-			"var_type"				"FIELD_INTEGER"
-			"attack_damage"					"25"
+			"var_type"				"FIELD_FLOAT"
+			"healPercent"			".25"
 		}
 	}
 

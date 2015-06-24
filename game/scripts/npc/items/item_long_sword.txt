@@ -13,20 +13,25 @@
 	"ItemCost"						"360"
 	"ItemQuality"					"component"
 
-	"Modifiers"
+	"OnEquip"
 	{
-		"modifier_long_sword"
+		"RunScript"
 		{
-			"Passive"  "1"
-			"IsHidden" "1" 
-			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-			"Properties"
-			{
-				"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%ad"
-			}
-		} 
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"AddADItem"
+			"ad"					"%attack_damage"
+		}
 	}
 
+	"OnUnequip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"RemoveADItem"
+			"ad"					"%attack_damage"
+		}
+	}
 	
 	//-------------------------------------------------------------------------------------------------------------
 	// Special	
@@ -36,7 +41,7 @@
 		"01"
 		{
 			"var_type"				"FIELD_INTEGER"
-			"ad"					"10"
+			"attack_damage"					"10"
 		}
 	}
 
