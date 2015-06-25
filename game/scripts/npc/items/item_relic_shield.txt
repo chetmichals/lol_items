@@ -26,13 +26,24 @@
 			}
 		}
 
-		"modifier_tribute_stack_counter_datadriven"
+		"modifier_spoils_of_war_stack_counter_datadriven"
 		{
 			"Passive"				"1"
 			"IsHidden"				"0"
 			"IsPurgable"			"0"
 			"IsDebuff"				"0"
+
+			"OnDealDamage"
+			{
+				"RunScript"
+				{
+					"ScriptFile"			"items/spoilsOfWarBuff.lua"
+					"Function"				"spoils_of_war_fire"
+				}
+			}
 		}
+
+
 	}
 	"OnEquip"
 	{
