@@ -176,10 +176,28 @@ function RemoveADItem(keys)
 	hero:SetBaseDamageMax(damage)
 end
 
+function AddAPItem(keys)
+	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	if hero.AP == nil then hero.AP = 0 end
+	AP = hero.AP
+	hero.AP = AP + keys.ap
+end
+
+function RemoveAPItem(keys)
+	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	if hero.AP == nil then hero.AP = 0 end
+	AP = hero.AP
+	hero.AP = AP - keys.ap
+end
+
 function HP5Heal(keys)
 	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
 	baseHeal = hero:GetBaseHealthRegen()
 	baseHeal = baseHeal * (1 + keys.healPercent)
 	baseHeal = baseHeal / 10
 	hero:Heal(baseHeal, nil)
+end
+
+function GrantGold(keys)
+	keys.caster:ModifyGold(keys.goldAmount, false, 0)
 end

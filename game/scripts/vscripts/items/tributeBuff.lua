@@ -5,6 +5,11 @@ function tributeStartBuff( keys )
 	local modifierName = "modifier_tribute_stack_counter_datadriven"
 	local maximum_charges = ability:GetLevelSpecialValueFor( "maximum_charges", 0 )
 	local charge_replenish_time = ability:GetLevelSpecialValueFor( "charge_replenish_time", 0 )
+	local itemName = keys.ability:GetAbilityName()
+
+	if caster.tribute_buff_timer_number == nil then caster.tribute_buff_timer_number = 1 end
+	local tributeTimerNumber = caster.tribute_buff_timer_number
+
 	-- Initialize stack
 	caster:SetModifierStackCount( modifierName, caster, 0 )
 	if caster.tribute_charges == nil then caster.tribute_charges = maximum_charges end	
@@ -21,47 +26,40 @@ function tributeStartBuff( keys )
 	
 	print("starting timer")
 	-- create timer to restore stack
-	if caster.hasTributeTimer == true then
-		print ("Already has timer")
-		return nil
-	else
-		Timers:CreateTimer( function()
-				if caster:FindModifierByName("modifier_tribute_stack_counter_datadriven") == nil then 
-					print("Killing Charge Timer")
-					caster.hasTributeTimer = false
-					return nil 
-				end
-
-				caster.hasTributeTimer = true
-
-				if caster.start_charge and not caster.hadBefore and caster.tribute_charges < maximum_charges then
-					-- Calculate stacks
-					local next_charge = caster.tribute_charges + 1
-					caster:RemoveModifierByName( modifierName )
-					if next_charge ~= 3 then
-						ability:ApplyDataDrivenModifier( caster, caster, modifierName, { Duration = charge_replenish_time } )
-						--tribute_start_cooldown( caster, charge_replenish_time )
-					else
-						ability:ApplyDataDrivenModifier( caster, caster, modifierName, {} )
-						caster.start_charge = false
-					end
-					caster:SetModifierStackCount( modifierName, caster, next_charge )
-					
-					-- Update stack
-					caster.tribute_charges = next_charge
-				end
-				
-				-- Check if max is reached then check every 0.5 seconds if the charge is used
-				if caster.tribute_charges ~= maximum_charges then
-					caster.start_charge = true
-					caster.hadBefore = false
-					return charge_replenish_time
-				else
-					return 0.5
-				end
+	Timers:CreateTimer( function()
+			if tributeTimerNumber ~= caster.tribute_buff_timer_number and not keys.caseter:HasItemInInventory(itemName) then 
+				print("Killing Charge Timer")
+				return nil 
 			end
-		)
-	end
+
+			if caster.start_charge and not caster.hadBefore and caster.tribute_charges < maximum_charges then
+				-- Calculate stacks
+				local next_charge = caster.tribute_charges + 1
+				caster:RemoveModifierByName( modifierName )
+				if next_charge ~= 3 then
+					ability:ApplyDataDrivenModifier( caster, caster, modifierName, { Duration = charge_replenish_time + .05 } )
+					--tribute_start_cooldown( caster, charge_replenish_time )
+				else
+					ability:ApplyDataDrivenModifier( caster, caster, modifierName, {} )
+					caster.start_charge = false
+				end
+				caster:SetModifierStackCount( modifierName, caster, next_charge )
+				
+				-- Update stack
+				caster.tribute_charges = next_charge
+			end
+
+			caster.hadBefore = false
+
+			-- Check if max is reached then check every 0.5 seconds if the charge is used
+			if caster.tribute_charges ~= maximum_charges then
+				caster.start_charge = true
+				return charge_replenish_time
+			else
+				return 0.5
+			end
+		end
+	)
 end
 
 function tributeEndBuff( keys )
@@ -73,7 +71,7 @@ function tribute_break( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local modifierName = "modifier_tribute_broken"
-	ability:ApplyDataDrivenModifier( caster, caster, modifierName, { Duration = ability:GetLevelSpecialValueFor("charge_replenish_time",0) })
+	ability:ApplyDataDrivenModifier( caster, caster, modifierName, { Duration = ability:GetLevelSpecialValueFor("break_time",0) })
 end
 
 function tribute_start_cooldown( caster, charge_replenish_time )
@@ -91,15 +89,15 @@ function tribute_start_cooldown( caster, charge_replenish_time )
 end
 
 function tribute_fire( keys )
+	-- To do, check if target is building or champ, and if so do extra damage and give moneys
 	local caster = keys.caster
-	local checkForBrokenMod = caster:FindModifierByName("modifier_tribute_broken")
 	local checkForBrokenMod = caster:FindModifierByName("modifier_tribute_broken")
 	if keys.caster.tribute_charges > 0 and checkForBrokenMod == nil then
 		-- variables
 		local ability = keys.ability
 		local modifierName = "modifier_tribute_stack_counter_datadriven"
 		local maximum_charges = ability:GetLevelSpecialValueFor( "maximum_charges", 0 )
-		local charge_replenish_time = ability:GetLevelSpecialValueFor( "charge_replenish_time", 0 )
+		local charge_replenish_time = ability:GetLevelSpecialValueFor( "charge_replenish_time", 0 ) + .05
 		
 		-- Deplete charge
 		local next_charge = caster.tribute_charges - 1

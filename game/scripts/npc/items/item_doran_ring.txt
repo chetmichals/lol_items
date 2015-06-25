@@ -25,7 +25,6 @@
 			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
 			"Properties"
 			{
-				"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" 	"%bonus_intellect"
 				"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health"
 				"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"		"%bonus_mana_regen"
 			}
@@ -42,6 +41,26 @@
 		} 
 	}
 
+	"OnEquip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"AddAPItem"
+			"ap"					"%ability_power"
+		}
+	}
+
+	"OnUnequip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"RemoveAPItem"
+			"ap"					"%ability_power"
+		}
+	}
+
 	
 	//-------------------------------------------------------------------------------------------------------------
 	// Special	
@@ -51,7 +70,7 @@
 		"01"
 		{
 			"var_type"				"FIELD_INTEGER"
-			"bonus_intellect"		"15"
+			"ability_power"		"15"
 		}
 		"02"
 		{

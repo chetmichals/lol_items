@@ -16,18 +16,24 @@
 	//-------------------------------------------------------------------------------------------------------------
 	// Modifer 
 	//-------------------------------------------------------------------------------------------------------------
-	"Modifiers"
+	"OnEquip"
 	{
-		"modifier_blasting_wand"
+		"RunScript"
 		{
-			"Passive"  "1"
-			"IsHidden" "1" 
-			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-			"Properties"
-			{
-				"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" 	"%bonus_intellect"
-			}
-		} 
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"AddAPItem"
+			"ap"					"%ability_power"
+		}
+	}
+
+	"OnUnequip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"RemoveAPItem"
+			"ap"					"%ability_power"
+		}
 	}
 
 	
@@ -39,7 +45,7 @@
 		"01"
 		{
 			"var_type"				"FIELD_INTEGER"
-			"bonus_intellect"		"40"
+			"ability_power"		"40"
 		}
 	}
 }
