@@ -10,7 +10,7 @@
 
 	// Item Info
 	//-------------------------------------------------------------------------------------------------------------
-	"ItemCost"						"875"
+	"ItemCost"						"500"
 	"ItemQuality"					"component"
 
 	"OnEquip"
@@ -19,7 +19,7 @@
 		{
 			"ScriptFile"			"items/utility.lua"
 			"Function"				"AddMagicResistItem"
-			"ad"					"%attack_damage"
+			"magicResist"					"%magic_resistance"
 		}
 	}
 
@@ -29,7 +29,7 @@
 		{
 			"ScriptFile"			"items/utility.lua"
 			"Function"				"RemoveMagicResistItem"
-			"ad"					"%magic_resistance"
+			"magicResist"					"%magic_resistance"
 		}
 	}
 

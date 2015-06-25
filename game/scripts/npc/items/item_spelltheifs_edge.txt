@@ -4,7 +4,9 @@
 
 	// General
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 	"BaseClass"						"item_datadriven"
 	"AbilityTextureName"			"spelltheifs_edge"
 
@@ -13,8 +15,76 @@
 	"ItemCost"						"365"
 	"ItemQuality"					"component"
 
+	"OnEquip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/tributeBuff.lua"
+			"Function"				"tributeStartBuff"
+		}
+	}
+
+	"OnUnequip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/tributeBuff.lua"
+			"Function"				"tributeEndBuff"
+		}
+	}
+
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/tributeBuff.lua"
+			"Function"				"tribute_fire"
+		}
+	}
+
 	"Modifiers"
 	{
+		"modifier_tribute_broken"
+		{
+			"TextureName" 			"brewmaster_storm_dispel_magic" 
+			"IsHidden"				"0"
+		}
+		"modifier_tribute_stack_counter_datadriven"
+		{
+			"Passive"				"1"
+			"IsHidden"				"0"
+			"IsPurgable"			"0"
+			"IsDebuff"				"0"
+		}
+
+		"modifier_tribute_aura"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"IsDebuff"			"0"
+	
+			"Aura"					"modifier_tribute_aura_enemy"
+			"Aura_Radius"			"2000"
+			"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+			"Aura_Types"			"DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
+			"Aura_ApplyToCaster" 	"0"
+		}
+
+		"modifier_tribute_aura_enemy"
+		{
+			"IsBuff"			"0"
+			"IsHidden"			"1"
+
+			"OnDeath"
+			{
+				"RunScript"
+				{
+					"ScriptFile"		"items/tributeBuff.lua"
+					"Function"			"tribute_break"
+				}
+			}			
+		}
+
 	}
 
 	
@@ -27,6 +97,21 @@
 		{
 			"var_type"				"FIELD_INTEGER"
 			"bonus_mana"			"200"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"duration"				"10.0"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"maximum_charges"		"3"
+		}
+		"04"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"charge_replenish_time"	"10.0"
 		}
 	}
 

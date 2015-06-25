@@ -73,7 +73,7 @@ end
 function DotaPvP:OnPlayerPicked( event )
     local spawnedUnitIndex = EntIndexToHScript(event.heroindex)
     -- Apply timer to update stats
-    DotaPvP:ModifyStatBonuses(spawnedUnitIndex)
+    --DotaPvP:ModifyStatBonuses(spawnedUnitIndex)
 end
 
 

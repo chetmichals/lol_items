@@ -144,6 +144,8 @@ function RemoveMagicResistItem(keys)
 end
 
 function SetMagicResistance(hero)
+	newMagicResistance = hero.magicResistance
+	print (newMagicResistance)
 	if newMagicResistance >= 0 then
 		newMagicResistance = 100 / (hero.magicResistance + 100)
 		newMagicResistance = (1 - newMagicResistance) * 100

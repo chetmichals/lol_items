@@ -9,16 +9,17 @@
 	"Model"						"models/heroes/drow/drow.mdl"			// Model.
 	"AttackRange"				"600"									// Range within a target can be attacked.
 	"MovementTurnRate"			"10"									// Turning rate.
-	
+	"MagicalResistance"			"-25"
+
 	
 	// Attributes
 	//-------------------------------------------------------------------------------------------------------------
 	"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
-	"AttributeBaseStrength"		"2.85"									// Base strength
+	"AttributeBaseStrength"		"0"									// Base strength
 	"AttributeStrengthGain"		"0"									// Strength bonus per level.
 	"AttributeBaseIntelligence"	"0"									// Base intelligence
 	"AttributeIntelligenceGain"	"0"									// Intelligence bonus per level.
-	"AttributeBaseAgility"		"51"									// Base agility
+	"AttributeBaseAgility"		"0"									// Base agility
 	"AttributeAgilityGain"		"0"									// Agility bonus per level.
 	
 	"AttackDamageMin"			"0"									// Damage range min.
