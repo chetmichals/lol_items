@@ -24,7 +24,32 @@
 			{
 				"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health"
 			}
-		} 
+		}
+
+		"modifier_tribute_stack_counter_datadriven"
+		{
+			"Passive"				"1"
+			"IsHidden"				"0"
+			"IsPurgable"			"0"
+			"IsDebuff"				"0"
+		}
+	}
+	"OnEquip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/spoilsOfWarBuff.lua"
+			"Function"				"spoils_of_war_start_buff"
+		}
+	}
+
+	"OnUnequip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/spoilsOfWarBuff.lua"
+			"Function"				"spoils_of_war_end_buff"
+		}
 	}
 
 	
@@ -37,6 +62,16 @@
 		{
 			"var_type"				"FIELD_INTEGER"
 			"bonus_health"			"75"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"maximum_charges"		"2"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"charge_replenish_time"	"60.0"
 		}
 	}
 
