@@ -143,6 +143,24 @@ function RemoveMagicResistItem(keys)
 	SetMagicResistance(hero)
 end
 
+function AddMagicResistAure(keys)
+	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	if hero.magicResistance == nil then
+		hero.magicResistance = 0
+	end
+	hero.magicResistance = hero.magicResistance + keys.magicResist
+	SetMagicResistance(hero)
+end
+
+function RemoveMagicResistAura(keys)
+	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	if hero.magicResistance == nil then
+		hero.magicResistance = 100
+	end
+	hero.magicResistance = hero.magicResistance - keys.magicResist
+	SetMagicResistance(hero)
+end
+
 function SetMagicResistance(hero)
 	newMagicResistance = hero.magicResistance
 	print (newMagicResistance)
@@ -184,6 +202,20 @@ function AddAPItem(keys)
 end
 
 function RemoveAPItem(keys)
+	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	if hero.AP == nil then hero.AP = 0 end
+	AP = hero.AP
+	hero.AP = AP - keys.ap
+end
+
+function AddAPAura(keys)
+	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	if hero.AP == nil then hero.AP = 0 end
+	AP = hero.AP
+	hero.AP = AP + keys.ap
+end
+
+function RemoveAPAura(keys)
 	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
 	if hero.AP == nil then hero.AP = 0 end
 	AP = hero.AP

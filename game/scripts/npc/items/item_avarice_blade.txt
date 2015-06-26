@@ -1,0 +1,89 @@
+"item_avarice_blade"
+{
+	"ID"							"2028"
+
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"BaseClass"						"item_datadriven"
+	"AbilityTextureName"			"avarice_blade"
+
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"						"800"
+	"ItemQuality"					"component"
+
+	"OnEquip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"	"items/utility.lua"
+			"Function"		"AddCrit"
+			"critAmount"	"%crit_amount"
+		}
+	}
+	"OnUnEquip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"	"items/utility.lua"
+			"Function"		"RemoveCrit"
+			"critAmount"	"%crit_amount"
+		}
+	}
+
+	"Modifiers"
+	{
+		"modifier_avarice_blade_passive"
+		{
+			"Passive"				"1"
+			"IsHidden"				"1"
+			"IsDebuff"				"0"
+		
+			"ThinkInterval" 		"3.33"
+			"OnIntervalThink"  //Give 3 gold per 10 seconds
+			{
+				"RunScript"
+				{
+					"ScriptFile"					"items/utility.lua"
+					"Function"						"GrantGold"
+					"goldAmount"					"%extra_gold_per_10 / 3"
+				}
+			}
+
+			"OnKill"
+			{
+				"RunScript"
+				{
+					"ScriptFile"					"items/utility.lua"
+					"Function"						"GrantGold"
+					"goldAmount"					"%extra_gold_per_lasthit"
+				}
+			}
+		}
+	}
+
+	
+	//-------------------------------------------------------------------------------------------------------------
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"							"FIELD_INTEGER"
+			"crit_amount"						"10"
+		}
+		"02"
+		{
+			"var_type"							"FIELD_INTEGER"
+			"extra_gold_per_10"					"3"
+		}
+		"03"
+		{
+			"var_type"							"FIELD_INTEGER"
+			"extra_gold_per_lasthit"			"3"
+		}
+	}
+
+}

@@ -1,35 +1,51 @@
-"item_boots_of_speed"
+"item_aether_wisp"
 {
-	"ID"							"2011"
+	"ID"							"2027"
 
 	// General
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	"BaseClass"						"item_datadriven"
-	"AbilityTextureName"			"boots_of_speed"
+	"AbilityTextureName"			"aether_wisp"
 
 	// Item Info
 	//-------------------------------------------------------------------------------------------------------------
-	"ItemCost"						"325"
+	"ItemCost"						"850"
 	"ItemQuality"					"component"
 
-	//-------------------------------------------------------------------------------------------------------------
-	// Modifer 
-	//-------------------------------------------------------------------------------------------------------------
 	"Modifiers"
 	{
-		"modifier_boots_of_speed"
+		"modifier_aether_wisp"
 		{
 			"Passive"  "1"
 			"IsHidden" "1" 
 			"Properties"
 			{
-				"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" 	"%bonus_move_speed"
+				"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" 	"%bonus_speed"
 			}
 		} 
 	}
 
-	
+	"OnEquip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"AddAPItem"
+			"ap"					"%ability_power"
+		}
+	}
+
+	"OnUnequip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"RemoveAPItem"
+			"ap"					"%ability_power"
+		}
+	}
+
 	//-------------------------------------------------------------------------------------------------------------
 	// Special	
 	//-------------------------------------------------------------------------------------------------------------
@@ -37,8 +53,14 @@
 	{
 		"01"
 		{
-			"var_type"				"FIELD_INTEGER"
-			"bonus_move_speed"			"25"
+			"var_type"					"FIELD_INTEGER"
+			"bonus_speed"				"5"
+		}
+		"02"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"ability_power"				"30"
 		}
 	}
+
 }

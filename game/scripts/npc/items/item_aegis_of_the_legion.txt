@@ -1,0 +1,135 @@
+"item_aegis_of_the_legion"
+{
+	"ID"							"2026"
+
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"BaseClass"						"item_datadriven"
+	"AbilityTextureName"			"aegis_of_the_legion"
+
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"						"1900"
+	"ItemQuality"					"component"
+
+	"Modifiers"
+	{
+		"modifier_aegis_of_the_legion"
+		{
+			"Passive"  "1"
+			"IsHidden" "1" 
+			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health"
+			}
+		}
+
+		"modifier_aegis_of_the_legion_aura_emmiter"
+		{
+			"Passive"				"1"
+			"IsHidden"				"1"
+			"IsDebuff"				"0"
+			"TextureName" 			"buyback" 
+	
+			"Aura"					"modifier_ancient_coin_cash_aura_enemy"
+			"Aura_Radius"			"%arua_radius"
+			"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+			"Aura_Types"			"DOTA_UNIT_TARGET_HERO"
+			"Aura_ApplyToCaster" 	"1"
+		}
+
+		"modifier_aegis_of_the_legion_aura"
+		{
+			"IsBuff"			"0"
+			"TextureName" 		"modifier_buyback_gold_penalty" 
+			"IsHidden"			"1"
+
+			"OnCreated"
+			{
+				"RunScript"
+				{
+					"ScriptFile"			"items/utility.lua"
+					"Function"				"AddMagicResistAure"
+					"magicResist"			"%magic_resistance_aura"
+				}
+			}
+			"OnDestroy"
+			{
+				"RunScript"
+				{
+					"ScriptFile"			"items/utility.lua"
+					"Function"				"RemoveMagicResistAura"
+					"magicResist"			"%magic_resistance_aura"
+				}
+			}
+			
+			"ThinkInterval" 		".5"
+			"OnIntervalThink"  //Heal the person being buffed based off of base HP regen.
+			{
+				"RunScript"
+				{
+					"ScriptFile"					"items/utility.lua"
+					"Function"						"HP5Heal"
+					"healPercent"					"%heal_aura"
+				}
+			}			
+		}
+	}
+
+	"OnEquip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"AddMagicResistItem"
+			"magicResist"			"%magic_resistance"
+		}
+	}
+
+	"OnUnequip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"RemoveMagicResistItem"
+			"magicResist"			"%magic_resistance"
+		}
+	}
+
+	
+	//-------------------------------------------------------------------------------------------------------------
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"bonus_health"					"200"
+		}
+		"02"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"magic_resistance"				"20"
+		}
+		"03"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"magic_resistance_aura"			"20"
+		}
+		"04"
+		{
+			"var_type"						"FIELD_FLOAT"
+			"heal_aura"						".75"
+		}
+		"05"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"arua_radius"					"1100"
+		}
+
+	}
+
+}

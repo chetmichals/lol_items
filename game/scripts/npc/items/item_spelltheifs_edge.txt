@@ -110,7 +110,7 @@
 			"IsDebuff"				"0"
 		
 			"ThinkInterval" 		"5"
-			"OnIntervalThink"  //Heal the owner based off of base HP regen.
+			"OnIntervalThink"  //Give 2 gold per 10 seconds
 			{
 				"RunScript"
 				{
