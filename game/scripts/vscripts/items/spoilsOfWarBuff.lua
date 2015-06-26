@@ -20,7 +20,7 @@ function spoils_of_war_start_buff( keys )
 	if caster.had_spoils_of_war_buff_before == nil then caster.had_spoils_of_war_buff_before = false end
 	
 	if caster.spoils_of_war_charges < maximum_charges then
-		ability:ApplyDataDrivenModifier( caster, caster, modifierName, {Duration = charge_replenish_time + .05} )
+		ability:ApplyDataDrivenModifier( caster, caster, modifierName, {Duration = charge_replenish_time + .10} )
 	else
 		ability:ApplyDataDrivenModifier( caster, caster, modifierName, {} )
 	end
@@ -28,7 +28,7 @@ function spoils_of_war_start_buff( keys )
 	
 	-- create timer to restore stack
 	Timers:CreateTimer( function()
-			if spoils_of_warTimerNumber ~= caster.spoils_of_war_buff_timer_number and not keys.caseter:HasItemInInventory(itemName) then 
+			if spoils_of_warTimerNumber ~= caster.spoils_of_war_buff_timer_number or not keys.caster:HasItemInInventory(itemName) then 
 				return nil 
 			end
 
@@ -37,7 +37,7 @@ function spoils_of_war_start_buff( keys )
 				local next_charge = caster.spoils_of_war_charges + 1
 				caster:RemoveModifierByName( modifierName )
 				if next_charge ~= maximum_charges then
-					ability:ApplyDataDrivenModifier( caster, caster, modifierName, { Duration = charge_replenish_time + .05 } )
+					ability:ApplyDataDrivenModifier( caster, caster, modifierName, { Duration = charge_replenish_time + .10 } )
 					--spoils_of_war_start_cooldown( caster, charge_replenish_time )
 				else
 					ability:ApplyDataDrivenModifier( caster, caster, modifierName, {} )
@@ -76,13 +76,13 @@ function spoils_of_war_fire( keys )
 		local ability = keys.ability
 		local modifierName = "modifier_spoils_of_war_stack_counter_datadriven"
 		local maximum_charges = ability:GetLevelSpecialValueFor( "maximum_charges", 0 )
-		local charge_replenish_time = ability:GetLevelSpecialValueFor( "charge_replenish_time", 0 ) + .05
+		local charge_replenish_time = ability:GetLevelSpecialValueFor( "charge_replenish_time", 0 )
 		
 		-- Deplete charge
 		local next_charge = caster.spoils_of_war_charges - 1
 		if caster.spoils_of_war_charges == maximum_charges then
 			caster:RemoveModifierByName( modifierName )
-			ability:ApplyDataDrivenModifier( caster, caster, modifierName, { Duration = charge_replenish_time } )
+			ability:ApplyDataDrivenModifier( caster, caster, modifierName, { Duration = charge_replenish_time .10 } )
 			--spoils_of_war_start_cooldown( caster, charge_replenish_time )
 		end
 		caster:SetModifierStackCount( modifierName, caster, next_charge )

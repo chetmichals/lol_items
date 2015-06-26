@@ -63,10 +63,15 @@
 			"IsPurgable"			"0"
 			"IsDebuff"				"0"
 
+			"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"
+
 			"OnDealDamage"
-			{
-				"ScriptFile"			"items/tributeBuff.lua"
-				"Function"				"tribute_fire"
+			{	
+				"RunScript"
+				{
+					"ScriptFile"			"items/tributeBuff.lua"
+					"Function"				"tribute_fire"
+				}
 			}
 		}
 
@@ -162,6 +167,11 @@
 		{
 			"var_type"				"FIELD_INTEGER"
 			"ability_power"   		"5"
+		}
+		"08"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"tribute_gold"   		"5"
 		}
 	}
 

@@ -18,18 +18,24 @@
 		//-------------------------------------------------------------------------------------------------------------
 		// Modifer 
 		//-------------------------------------------------------------------------------------------------------------
-		"Modifiers"
+		"OnEquip"
 		{
-			"modifier_amplifying_tome"
+			"RunScript"
 			{
-				"Passive"  "1"
-				"IsHidden" "1" 
-				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" 	"%bonus_intellect"
-				}
-			} 
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"AddAPItem"
+				"ap"					"%ability_power"
+			}
+		}
+	
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"RemoveAPItem"
+				"ap"					"%ability_power"
+			}
 		}
 	
 		
@@ -41,7 +47,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"20"
+				"ability_power"		"20"
 			}
 		}
 	}
@@ -206,18 +212,24 @@
 		//-------------------------------------------------------------------------------------------------------------
 		// Modifer 
 		//-------------------------------------------------------------------------------------------------------------
-		"Modifiers"
+		"OnEquip"
 		{
-			"modifier_blasting_wand"
+			"RunScript"
 			{
-				"Passive"  "1"
-				"IsHidden" "1" 
-				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" 	"%bonus_intellect"
-				}
-			} 
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"AddAPItem"
+				"ap"					"%ability_power"
+			}
+		}
+	
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"RemoveAPItem"
+				"ap"					"%ability_power"
+			}
 		}
 	
 		
@@ -229,7 +241,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"40"
+				"ability_power"		"40"
 			}
 		}
 	}
@@ -526,7 +538,6 @@
 				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" 	"%bonus_intellect"
 					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health"
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"		"%bonus_mana_regen"
 				}
@@ -543,6 +554,26 @@
 			} 
 		}
 	
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"AddAPItem"
+				"ap"					"%ability_power"
+			}
+		}
+	
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"RemoveAPItem"
+				"ap"					"%ability_power"
+			}
+		}
+	
 		
 		//-------------------------------------------------------------------------------------------------------------
 		// Special	
@@ -552,7 +583,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"15"
+				"ability_power"		"15"
 			}
 			"02"
 			{
@@ -1082,18 +1113,24 @@
 		//-------------------------------------------------------------------------------------------------------------
 		// Modifer 
 		//-------------------------------------------------------------------------------------------------------------
-		"Modifiers"
+		"OnEquip"
 		{
-			"modifier_needlessly_large_rod"
+			"RunScript"
 			{
-				"Passive"  "1"
-				"IsHidden" "1" 
-				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" 	"%bonus_intellect"
-				}
-			} 
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"AddAPItem"
+				"ap"					"%ability_power"
+			}
+		}
+	
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"RemoveAPItem"
+				"ap"					"%ability_power"
+			}
 		}
 	
 		
@@ -1105,7 +1142,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"80"
+				"ability_power"		"80"
 			}
 		}
 	}
@@ -1347,7 +1384,43 @@
 				{
 					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health"
 				}
-			} 
+			}
+	
+			"modifier_spoils_of_war_stack_counter_datadriven"
+			{
+				"Passive"				"1"
+				"IsHidden"				"0"
+				"IsPurgable"			"0"
+				"IsDebuff"				"0"
+	
+				"OnDealDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"items/spoilsOfWarBuff.lua"
+						"Function"				"spoils_of_war_fire"
+					}
+				}
+			}
+	
+	
+		}
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/spoilsOfWarBuff.lua"
+				"Function"				"spoils_of_war_start_buff"
+			}
+		}
+	
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/spoilsOfWarBuff.lua"
+				"Function"				"spoils_of_war_end_buff"
+			}
 		}
 	
 		
@@ -1360,6 +1433,16 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_health"			"75"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"maximum_charges"		"2"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"charge_replenish_time"	"60.0"
 			}
 		}
 	
@@ -1497,9 +1580,11 @@
 	{
 		"ID"							"2023"
 	
+		//Item Grants AP and mana Regen, 1 gold every 5 seconds, and a named passive called tribute 
+	
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"BaseClass"						"item_datadriven"
@@ -1517,6 +1602,13 @@
 				"ScriptFile"			"items/tributeBuff.lua"
 				"Function"				"tributeStartBuff"
 			}
+	
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"AddAPItem"
+				"ap"					"%ability_power"
+			}
 		}
 	
 		"OnUnequip"
@@ -1526,14 +1618,12 @@
 				"ScriptFile"			"items/tributeBuff.lua"
 				"Function"				"tributeEndBuff"
 			}
-		}
 	
-		"OnSpellStart"
-		{
 			"RunScript"
 			{
-				"ScriptFile"			"items/tributeBuff.lua"
-				"Function"				"tribute_fire"
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"RemoveAPItem"
+				"ap"					"%ability_power"
 			}
 		}
 	
@@ -1550,6 +1640,17 @@
 				"IsHidden"				"0"
 				"IsPurgable"			"0"
 				"IsDebuff"				"0"
+	
+				"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"
+	
+				"OnDealDamage"
+				{	
+					"RunScript"
+					{
+						"ScriptFile"			"items/tributeBuff.lua"
+						"Function"				"tribute_fire"
+					}
+				}
 			}
 	
 			"modifier_tribute_aura"
@@ -1580,6 +1681,28 @@
 				}			
 			}
 	
+			"modifier_spelltheif_passive"
+			{
+				"Passive"				"1"
+				"IsHidden"				"1"
+				"IsDebuff"				"0"
+			
+				"ThinkInterval" 		"5"
+				"OnIntervalThink"  //Heal the owner based off of base HP regen.
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"items/utility.lua"
+						"Function"						"GrantGold"
+						"goldAmount"					"%extra_gold / 2"
+					}
+				}
+	
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"		"%bonus_mana_regen"
+				}
+			}
 		}
 	
 		
@@ -1591,12 +1714,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana"			"200"
+				"mana_regen_percent"	"5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"10.0"
+				"break_time"			"12.0"
 			}
 			"03"
 			{
@@ -1607,6 +1730,26 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"charge_replenish_time"	"10.0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"10"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"extra_gold"			"2000"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ability_power"   		"5"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tribute_gold"   		"5"
 			}
 		}
 	
