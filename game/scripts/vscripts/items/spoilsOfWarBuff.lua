@@ -1,4 +1,21 @@
+local function loadModule(name)
+    local status, err = pcall(function()
+        -- Load the module
+        require(name)
+    end)
+
+    if not status then
+        -- Tell the user about it
+        print('WARNING: '..name..' failed to load!')
+        print(err)
+    end
+end
+
+loadModule ( 'util' )
+
 function spoils_of_war_start_buff( keys )
+	PrintTable(keys)
+
 	-- Variables
 	local caster = keys.caster
 	local ability = keys.ability
@@ -24,6 +41,10 @@ function spoils_of_war_start_buff( keys )
 	else
 		ability:ApplyDataDrivenModifier( caster, caster, modifierName, {} )
 	end
+
+	--If Melee, give melee bonus
+	if not caster:IsRangedAttacker() then ability:ApplyDataDrivenModifier( caster, caster, "modifier_spoils_of_war_melee_bonus", {} ) end
+
 	caster:SetModifierStackCount( modifierName, caster, caster.spoils_of_war_charges )
 	
 	-- create timer to restore stack
@@ -66,12 +87,47 @@ function spoils_of_war_end_buff( keys )
 	keys.caster.had_spoils_of_war_buff_before = true
 end
 
+function spoils_of_war_melee_bonus( keys )
+	print ("melee guy attack!")
+
+	--To Do, 
+end
 
 function spoils_of_war_fire( keys )
 	-- To do, check if target is building or champ, and if so do extra damage and give moneys
+	PrintTable(keys)
+	local validUnit = (keys.unit:IsCreep() or keys.unit:IsNeutralUnitType() or keys.unit:IsMechanical())
+	if validUnit ~= true then return nil end
 	local caster = keys.caster
 	local checkForBrokenMod = caster:FindModifierByName("modifier_spoils_of_war_broken")
+	keys.caster.spoils_of_war_charges = 1
 	if keys.caster.spoils_of_war_charges > 0 and checkForBrokenMod == nil then
+
+		
+		--Check if there is an allied unit in the area
+		checkRadius = keys.ability:GetLevelSpecialValueFor( "search_radius", 0 )
+		unitCheck = FindUnitsInRadius(keys.caster:GetTeam(), keys.caster:GetAbsOrigin(), nil, ability:GetLevelSpecialValueFor( "search_radius", 0 ), DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS, FIND_ANY_ORDER, false)
+		local alliedUnit = nil
+		if #unitCheck > 1 then 
+			for i,units in ipairs(unitCheck) do
+				if units ~= keys.attacker then
+					alliedUnit = units
+					break
+				end
+			end
+		else
+			return nil
+		end
+
+		--Apply Effects
+		keys.attacker:Heal(40,keys.attacker)
+		alliedUnit:Heal(40,keys.attacker)
+
+		goldToGrant = keys.unit:GetGoldBounty()
+		alliedUnit:ModifyGold(goldToGrant,false,0)
+
+
+
 		-- variables
 		local ability = keys.ability
 		local modifierName = "modifier_spoils_of_war_stack_counter_datadriven"
@@ -82,9 +138,12 @@ function spoils_of_war_fire( keys )
 		local next_charge = caster.spoils_of_war_charges - 1
 		if caster.spoils_of_war_charges == maximum_charges then
 			caster:RemoveModifierByName( modifierName )
-			ability:ApplyDataDrivenModifier( caster, caster, modifierName, { Duration = charge_replenish_time .10 } )
+			ability:ApplyDataDrivenModifier( caster, caster, modifierName, { Duration = charge_replenish_time + .10 } )
 			--spoils_of_war_start_cooldown( caster, charge_replenish_time )
 		end
+
+		
+
 		caster:SetModifierStackCount( modifierName, caster, next_charge )
 		caster.spoils_of_war_charges = next_charge
 	end

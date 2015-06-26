@@ -20,7 +20,8 @@
 	"Modifiers"
 	{
 		"modifier_basic_crtitical_strike_stack"
-		{
+		{	
+			"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"
 			"TextureName" "leoric_critical_strike" 
 			"Properties"
 			{
@@ -32,6 +33,7 @@
 		{
 			"Passive"			"1"
 			"IsHidden"			"1"
+			"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"
 			"OnAttackStart"
 			{
 				"Random"
@@ -54,6 +56,8 @@
 		{
 			"Passive"			"1"
 			"IsHidden"			"1"
+			"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"		
+
 			"OnAttackStart"
 			{
 				"Random"
@@ -76,6 +80,7 @@
 		{
 			"Passive"			"1"
 			"IsHidden"			"1"
+			"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"
 			"OnAttackStart"
 			{
 				"Random"
@@ -98,6 +103,7 @@
 		{
 			"Passive"			"1"
 			"IsHidden"			"1"
+			"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"
 			"OnAttackStart"
 			{
 				"Random"
@@ -120,6 +126,7 @@
 		{
 			"Passive"			"1"
 			"IsHidden"			"1"
+			"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"
 			"OnAttackStart"
 			{
 				"Random"
@@ -139,7 +146,8 @@
 		}
 
 		"modifier_lol_basic_crit"
-		{
+		{	
+			"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"
 			"Properties"
 			{
 				"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"   "150"

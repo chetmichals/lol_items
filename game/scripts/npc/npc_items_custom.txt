@@ -924,7 +924,8 @@
 		"Modifiers"
 		{
 			"modifier_basic_crtitical_strike_stack"
-			{
+			{	
+				"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"
 				"TextureName" "leoric_critical_strike" 
 				"Properties"
 				{
@@ -936,6 +937,7 @@
 			{
 				"Passive"			"1"
 				"IsHidden"			"1"
+				"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"
 				"OnAttackStart"
 				{
 					"Random"
@@ -958,6 +960,8 @@
 			{
 				"Passive"			"1"
 				"IsHidden"			"1"
+				"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"		
+	
 				"OnAttackStart"
 				{
 					"Random"
@@ -980,6 +984,7 @@
 			{
 				"Passive"			"1"
 				"IsHidden"			"1"
+				"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"
 				"OnAttackStart"
 				{
 					"Random"
@@ -1002,6 +1007,7 @@
 			{
 				"Passive"			"1"
 				"IsHidden"			"1"
+				"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"
 				"OnAttackStart"
 				{
 					"Random"
@@ -1024,6 +1030,7 @@
 			{
 				"Passive"			"1"
 				"IsHidden"			"1"
+				"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"
 				"OnAttackStart"
 				{
 					"Random"
@@ -1043,7 +1050,8 @@
 			}
 	
 			"modifier_lol_basic_crit"
-			{
+			{	
+				"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"   "150"
@@ -1372,6 +1380,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"400"
 		"ItemQuality"					"component"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
 	
 		"Modifiers"
 		{
@@ -1392,13 +1401,32 @@
 				"IsHidden"				"0"
 				"IsPurgable"			"0"
 				"IsDebuff"				"0"
+				"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"
 	
-				"OnDealDamage"
+				"OnKill"
 				{
 					"RunScript"
 					{
 						"ScriptFile"			"items/spoilsOfWarBuff.lua"
 						"Function"				"spoils_of_war_fire"
+					}
+				}
+			}
+	
+			"modifier_spoils_of_war_melee_bonus"
+			{
+				"Passive"				"0"
+				"IsHidden"				"0"
+				"IsPurgable"			"0"
+				"IsDebuff"				"0"
+				"Attributes" 			"MODIFIER_ATTRIBUTE_PERMANENT"
+	
+				"OnAttack"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/spoilsOfWarBuff.lua"
+						"Function"		"spoils_of_war_melee_bonus"
 					}
 				}
 			}
@@ -1420,6 +1448,11 @@
 			{
 				"ScriptFile"			"items/spoilsOfWarBuff.lua"
 				"Function"				"spoils_of_war_end_buff"
+			}
+			"RemoveModifier"
+			{
+				"ModifierName"				"modifier_spoils_of_war_melee_bonus"
+				"Target"					"CASTER"
 			}
 		}
 	
@@ -1443,6 +1476,16 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"charge_replenish_time"	"60.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"search_radius"			"1100"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_amount"			"1100"
 			}
 		}
 	
@@ -1632,7 +1675,7 @@
 			"modifier_tribute_broken"
 			{
 				"TextureName" 			"brewmaster_storm_dispel_magic" 
-				"IsHidden"				"0"
+				"IsHidden"				"1"
 			}
 			"modifier_tribute_stack_counter_datadriven"
 			{
@@ -1739,7 +1782,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"extra_gold"			"2000"
+				"extra_gold"			"2"
 			}
 			"07"
 			{

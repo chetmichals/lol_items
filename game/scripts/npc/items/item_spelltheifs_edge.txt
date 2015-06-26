@@ -54,7 +54,7 @@
 		"modifier_tribute_broken"
 		{
 			"TextureName" 			"brewmaster_storm_dispel_magic" 
-			"IsHidden"				"0"
+			"IsHidden"				"1"
 		}
 		"modifier_tribute_stack_counter_datadriven"
 		{
