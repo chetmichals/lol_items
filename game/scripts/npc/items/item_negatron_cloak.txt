@@ -1,31 +1,36 @@
-"item_berserkers_greaves"
+"item_negatron_cloak"
 {
-	"ID"							"2029"
+	"ID"							"2041"
 
 	// General
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	"BaseClass"						"item_datadriven"
-	"AbilityTextureName"			"berserkers_greaves"
+	"AbilityTextureName"			"negatron_cloak"
 
 	// Item Info
 	//-------------------------------------------------------------------------------------------------------------
-	"ItemCost"						"100"
+	"ItemCost"						"850"
 	"ItemQuality"					"component"
 
-	"Modifiers"
+	"OnEquip"
 	{
-		"modifier_berserkers_greaves"
+		"RunScript"
 		{
-			"Passive"  "1"
-			"IsHidden" "1" 
-			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-			"Properties"
-			{
-				"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"			"%bonus_attack_speed"
-				"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" 				"%bonus_move_speed"
-			}
-		} 
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"AddMagicResistItem"
+			"magicResist"					"%magic_resistance"
+		}
+	}
+
+	"OnUnequip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"RemoveMagicResistItem"
+			"magicResist"					"%magic_resistance"
+		}
 	}
 
 	
@@ -36,13 +41,8 @@
 	{
 		"01"
 		{
-			"var_type"						"FIELD_INTEGER"
-			"bonus_attack_speed"			"15"
-		}
-		"02"
-		{
-			"var_type"						"FIELD_INTEGER"
-			"bonus_move_speed"				"25"
+			"var_type"				"FIELD_INTEGER"
+			"magic_resistance"		"45"
 		}
 	}
 

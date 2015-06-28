@@ -1,0 +1,189 @@
+"item_guardians_horn"
+{
+	"ID"							"2038"
+
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"BaseClass"						"item_datadriven"
+	"AbilityTextureName"			"guardians_horn"
+	"AbilityCooldown"				"25.0"
+
+	// Precache
+	//-------------------------------------------------------------------------------------------------------------
+	"precache"
+	{
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+		"particle"			"particles/units/heroes/hero_sven/sven_spell_warcry.vpcf"
+		"particle"			"particles/units/heroes/hero_sven/sven_warcry_buff.vpcf"
+	}
+
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"						"1025"
+	"ItemQuality"					"component"
+
+	"OnSpellStart"
+	{
+		"ActOnTargets"
+		{
+			"Target"
+			{
+				"Center" "CASTER"
+                "Radius" "%effect_radius"
+                "Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY" 
+                "Types" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+			}
+
+			"Action"
+			{
+				"ApplyModifier"
+				{
+					"ModifierName"	"modifier_guardians_horn_buff"
+					"Target"		"TARGET"
+				}
+			}
+		}
+
+		"FireSound"
+		{
+			"EffectName"	"Hero_Sven.WarCry"
+			"Target"		"CASTER"
+		}
+
+		"FireEffect"
+		{
+			"EffectName"	"particles/units/heroes/hero_sven/sven_spell_warcry.vpcf"
+			"EffectAttachType"	"follow_origin"
+			"Target"		"CASTER"
+		}
+	}
+
+	"Modifiers"
+	{
+		"modifier_guardians_horn_stackable_passive"
+		{
+			"Passive"  "1"
+			"IsHidden" "1" 
+			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_HEALTH_BONUS"				"%bonus_health"
+			}
+
+			"ThinkInterval" 		".5"
+			"OnIntervalThink"  //Heal the owner based off of base HP regen.
+			{
+				"RunScript"
+				{
+					"ScriptFile"					"items/utility.lua"
+					"Function"						"HP5Heal"
+					"healPercent"					"%healPercent"
+				}
+			}
+		}
+		"modifier_guardians_horn_datadriven_aura_emitter"
+		{
+			"Passive"				"1"
+			"IsHidden"				"0"
+			
+			"Aura" 					"modifier_guardians_horn_datadriven_aura"
+			"Aura_Radius" 			"%effect_radius"
+			"Aura_Teams" 			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+			"Aura_Types" 			"DOTA_UNIT_TARGET_HERO"
+			"Aura_Flags" 			"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+			"Aura_ApplyToCaster" 	"0"
+		}
+		"modifier_guardians_horn_datadriven_aura"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"Attributes" 		"MODIFIER_ATTRIBUTE_MULTIPLE"
+			
+			"OnAbilityExecuted"
+			{
+				"RunScript"
+				{
+					"ScriptFile"			"items/guardiansHorn.lua"
+					"Function"				"guardiansHorn"
+				}
+			}
+		}
+		"modifier_guardians_horn_buff"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"			
+			"Duration"			"%active_duration"
+
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"				"%bonus_speed"
+				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"					"%bonus_armor"
+			}
+			"OnCreated" 
+			{
+				//Add MR
+				"RunScript" 
+				{
+					"ScriptFile"				"items/utility.lua"
+					"Function"					"AddMagicResistItem"
+					"magicResist"				"%magic_resistance"
+				}
+			}
+			"OnDestroy"
+			{
+				//Remove MR
+				"RunScript" 
+				{
+					"ScriptFile"				"items/utility.lua"
+					"Function"					"RemoveMagicResistItem"
+				"magicResist"					"%magic_resistance"
+				}
+			}
+
+		}
+	}
+	
+	//-------------------------------------------------------------------------------------------------------------
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"						"FIELD_FLOAT"
+			"healPercent"					"1.25"
+		}
+		"02"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"bonus_health"					"200"
+		}
+		"03"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"effect_radius"					"1100"
+		}
+		"04"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"bonus_speed"					"30"
+		}
+		"05"
+		{
+			"var_type"						"FIELD_FLOAT"
+			"bonus_armor"					"3.333"
+		}
+		"06"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"magic_resistance"				"20"
+		}
+		"07"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"active_duration"				"3"
+		}
+	}
+
+}

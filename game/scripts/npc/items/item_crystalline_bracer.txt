@@ -1,34 +1,43 @@
-"item_berserkers_greaves"
+"item_crystalline_bracer"
 {
-	"ID"							"2029"
+	"ID"							"2032"
 
 	// General
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	"BaseClass"						"item_datadriven"
-	"AbilityTextureName"			"berserkers_greaves"
+	"AbilityTextureName"			"crystalline_bracer"
 
 	// Item Info
 	//-------------------------------------------------------------------------------------------------------------
-	"ItemCost"						"100"
+	"ItemCost"						"600"
 	"ItemQuality"					"component"
 
 	"Modifiers"
 	{
-		"modifier_berserkers_greaves"
+		"modifier_item_crystalline_bracer"
 		{
-			"Passive"  "1"
-			"IsHidden" "1" 
-			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"Attributes" 		"MODIFIER_ATTRIBUTE_MULTIPLE"
+						
+			"ThinkInterval" 		".5"
+			"OnIntervalThink"  //Heal the owner based off of base HP regen.
+			{
+				"RunScript"
+				{
+					"ScriptFile"					"items/utility.lua"
+					"Function"						"HP5Heal"
+					"healPercent"					"%healPercent"
+				}
+			}
+
 			"Properties"
 			{
-				"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"			"%bonus_attack_speed"
-				"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" 				"%bonus_move_speed"
+				"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health"
 			}
-		} 
+		}
 	}
-
-	
 	//-------------------------------------------------------------------------------------------------------------
 	// Special	
 	//-------------------------------------------------------------------------------------------------------------
@@ -36,13 +45,13 @@
 	{
 		"01"
 		{
-			"var_type"						"FIELD_INTEGER"
-			"bonus_attack_speed"			"15"
+			"var_type"				"FIELD_FLOAT"
+			"healPercent"			".50"
 		}
-		"02"
+		"01"
 		{
-			"var_type"						"FIELD_INTEGER"
-			"bonus_move_speed"				"25"
+			"var_type"				"FIELD_INTEGER"
+			"bonus_health"			"200"
 		}
 	}
 

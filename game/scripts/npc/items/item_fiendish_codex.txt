@@ -1,0 +1,87 @@
+"item_fiendish_codex"
+{
+	"ID"							"2034"
+
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"BaseClass"						"item_datadriven"
+	"AbilityTextureName"			"fiendish_codex"
+
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"						"820"
+	"ItemQuality"					"component"
+
+
+	"Modifiers"
+	{
+		"modifier_fiendish_codex_unique_passive"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			
+			"OnCreated" 
+			{
+				//Add CDR
+				"RunScript" 
+				{
+					"ScriptFile"		"items/utility.lua"
+					"Function"			"AddCDR"
+					"CDR"				"%cool_down_reduction"
+				}
+			}
+			"OnDestroy"
+			{
+				//Remove CDR
+				"RunScript" 
+				{
+					"ScriptFile"		"items/utility.lua"
+					"Function"			"RemoveCDR"
+					"CDR"				"%cool_down_reduction"
+				}
+			}
+		}
+	}
+
+	"OnEquip"
+	{
+		
+		//Add AP
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"AddAPItem"
+			"ap"					"%ability_power"
+		}
+	}
+	"OnUnEquip"
+	{
+		//Remove AP
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"RemoveAPItem"
+			"ap"					"%ability_power"
+		}
+	}
+
+	
+	//-------------------------------------------------------------------------------------------------------------
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"							"FIELD_INTEGER"
+			"cool_down_reduction"				"10"
+		}
+		"02"
+		{
+			"var_type"							"FIELD_INTEGER"
+			"ability_power"						"30"
+		}
+	}
+
+}

@@ -1,0 +1,99 @@
+"item_haunting_guise"
+{
+	"ID"							"2039"
+
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"BaseClass"						"item_datadriven"
+	"AbilityTextureName"			"haunting_guise"
+
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"						"500"
+	"ItemQuality"					"component"
+
+	"OnEquip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"AddAPItem"
+			"ap"					"%ability_power"
+		}
+	}
+
+	"OnUnequip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"RemoveAPItem"
+			"ap"					"%ability_power"
+		}
+	}
+	"Modifiers"
+	{
+		"modifier_haunting_guise"
+		{
+			"Passive"  "1"
+			"IsHidden" "1" 
+			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health"
+			}
+		}
+		"modifier_haunting_guise_unique_passive"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			
+			"OnCreated" 
+			{
+				//Add magicPen
+				"RunScript" 
+				{
+					"ScriptFile"			"items/utility.lua"
+					"Function"				"AddMagicPen"
+					"magicPen"				"%magic_penitration"
+				}
+			}
+			"OnDestroy"
+			{
+				//Remove magicPen
+				"RunScript" 
+				{
+					"ScriptFile"			"items/utility.lua"
+					"Function"				"RemoveMagicPen"
+					"magicPen"				"%magic_penitration"
+				}
+			}
+		}
+
+	}
+
+	
+	//-------------------------------------------------------------------------------------------------------------
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"ability_power"				"25"
+		}
+		"02"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"bonus_health"				"200"
+		}
+		"03"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"magic_penitration"			"15"
+		}
+	}
+
+}

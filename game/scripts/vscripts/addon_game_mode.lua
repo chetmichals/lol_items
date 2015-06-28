@@ -49,12 +49,23 @@ function DotaPvP:InitGameMode()
 	--Hooks
 	ListenToGameEvent('npc_spawned', Dynamic_Wrap( DotaPvP, 'OnNPCSpawned' ), self )
     ListenToGameEvent( "dota_player_pick_hero", Dynamic_Wrap( DotaPvP, "OnPlayerPicked" ), self )
+	--GameRules:GetGameModeEntity():SetAbilityTuningValueFilter(Dynamic_Wrap(DotaPvP, 'AbilityFilter'), self)
 	
 end
 
 --------------------------------------------------------------------------------
 function DotaPvP:GameThink()
 	return 0.25
+end
+
+function DotaPvP:AbilityFilter( keys )
+	print("----New Ability-----")
+	--keys.value = keys.value * 20
+	PrintTable (keys)
+	handle = EntIndexToHScript(keys.entindex_caster_const)
+	--print(handle:IsItem())
+	PrintTable(handle)
+	return true
 end
 
 function DotaPvP:OnNPCSpawned( keys )

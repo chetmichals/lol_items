@@ -1,29 +1,28 @@
-"item_berserkers_greaves"
+"item_giants_belt"
 {
-	"ID"							"2029"
+	"ID"							"2036"
 
 	// General
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	"BaseClass"						"item_datadriven"
-	"AbilityTextureName"			"berserkers_greaves"
+	"AbilityTextureName"			"giants_belt"
 
 	// Item Info
 	//-------------------------------------------------------------------------------------------------------------
-	"ItemCost"						"100"
+	"ItemCost"						"1000"
 	"ItemQuality"					"component"
 
 	"Modifiers"
 	{
-		"modifier_berserkers_greaves"
+		"modifier_giants_belt"
 		{
 			"Passive"  "1"
 			"IsHidden" "1" 
 			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
 			"Properties"
 			{
-				"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"			"%bonus_attack_speed"
-				"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" 				"%bonus_move_speed"
+				"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health"
 			}
 		} 
 	}
@@ -36,13 +35,8 @@
 	{
 		"01"
 		{
-			"var_type"						"FIELD_INTEGER"
-			"bonus_attack_speed"			"15"
-		}
-		"02"
-		{
-			"var_type"						"FIELD_INTEGER"
-			"bonus_move_speed"				"25"
+			"var_type"				"FIELD_INTEGER"
+			"bonus_health"			"380"
 		}
 	}
 

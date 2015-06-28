@@ -1,5 +1,206 @@
 "DOTAAbilities"
 {
+	"item_aegis_of_the_legion"
+	{
+		"ID"							"2026"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"aegis_of_the_legion"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1900"
+		"ItemQuality"					"component"
+	
+		"Modifiers"
+		{
+			"modifier_aegis_of_the_legion"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health"
+				}
+			}
+	
+			"modifier_aegis_of_the_legion_aura_emmiter"
+			{
+				"Passive"				"1"
+				"IsHidden"				"1"
+				"IsDebuff"				"0"
+				"TextureName" 			"buyback" 
+		
+				"Aura"					"modifier_ancient_coin_cash_aura_enemy"
+				"Aura_Radius"			"%arua_radius"
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_HERO"
+				"Aura_ApplyToCaster" 	"1"
+			}
+	
+			"modifier_aegis_of_the_legion_aura"
+			{
+				"IsBuff"			"0"
+				"TextureName" 		"modifier_buyback_gold_penalty" 
+				"IsHidden"			"1"
+	
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"items/utility.lua"
+						"Function"				"AddMagicResistAure"
+						"magicResist"			"%magic_resistance_aura"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"items/utility.lua"
+						"Function"				"RemoveMagicResistAura"
+						"magicResist"			"%magic_resistance_aura"
+					}
+				}
+				
+				"ThinkInterval" 		".5"
+				"OnIntervalThink"  //Heal the person being buffed based off of base HP regen.
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"items/utility.lua"
+						"Function"						"HP5Heal"
+						"healPercent"					"%heal_aura"
+					}
+				}			
+			}
+		}
+	
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"AddMagicResistItem"
+				"magicResist"			"%magic_resistance"
+			}
+		}
+	
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"RemoveMagicResistItem"
+				"magicResist"			"%magic_resistance"
+			}
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_health"					"200"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"magic_resistance"				"20"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"magic_resistance_aura"			"20"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"heal_aura"						".75"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"arua_radius"					"1100"
+			}
+	
+		}
+	
+	}
+	"item_aether_wisp"
+	{
+		"ID"							"2027"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"aether_wisp"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"850"
+		"ItemQuality"					"component"
+	
+		"Modifiers"
+		{
+			"modifier_aether_wisp"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" 	"%bonus_speed"
+				}
+			} 
+		}
+	
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"AddAPItem"
+				"ap"					"%ability_power"
+			}
+		}
+	
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"RemoveAPItem"
+				"ap"					"%ability_power"
+			}
+		}
+	
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_speed"				"5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"ability_power"				"30"
+			}
+		}
+	
+	}
 	"item_amplifying_tome"
 	{
 		"ID"							"2006"
@@ -143,6 +344,144 @@
 			}
 		}
 	}
+	"item_avarice_blade"
+	{
+		"ID"							"2028"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"avarice_blade"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"800"
+		"ItemQuality"					"component"
+	
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/utility.lua"
+				"Function"		"AddCrit"
+				"critAmount"	"%crit_amount"
+			}
+		}
+		"OnUnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/utility.lua"
+				"Function"		"RemoveCrit"
+				"critAmount"	"%crit_amount"
+			}
+		}
+	
+		"Modifiers"
+		{
+			"modifier_avarice_blade_passive"
+			{
+				"Passive"				"1"
+				"IsHidden"				"1"
+				"IsDebuff"				"0"
+			
+				"ThinkInterval" 		"3.33"
+				"OnIntervalThink"  //Give 3 gold per 10 seconds
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"items/utility.lua"
+						"Function"						"GrantGold"
+						"goldAmount"					"%extra_gold_per_10 / 3"
+					}
+				}
+	
+				"OnKill"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"items/utility.lua"
+						"Function"						"GrantGold"
+						"goldAmount"					"%extra_gold_per_lasthit"
+					}
+				}
+			}
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"crit_amount"						"10"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"extra_gold_per_10"					"3"
+			}
+			"03"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"extra_gold_per_lasthit"			"3"
+			}
+		}
+	
+	}
+	"item_berserkers_greaves"
+	{
+		"ID"							"2029"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"berserkers_greaves"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemQuality"					"component"
+	
+		"Modifiers"
+		{
+			"modifier_berserkers_greaves"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"			"%bonus_attack_speed"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" 				"%bonus_move_speed"
+				}
+			} 
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_attack_speed"			"15"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_move_speed"				"25"
+			}
+		}
+	
+	}
 	"item_bf_sword"
 	{
 		"ID"							"2007"
@@ -271,7 +610,7 @@
 				"IsHidden" "1" 
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" 	"%bonus_speed"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" 	"%bonus_move_speed"
 				}
 			} 
 		}
@@ -285,7 +624,64 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_speed"			"25"
+				"bonus_move_speed"			"25"
+			}
+		}
+	}
+	"item_box_of_bugs"
+	{
+		"ID"							"2500"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"box_of_bugs"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"10"
+		"ItemQuality"					"component"
+	
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"debugStuff"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_cooldownTest"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"			"50"
+				}
+			}
+			"modifier_cooldownTest_2"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"			"75"
+				}
+			}
+			"modifier_cooldownTest_3"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"			"10"
+				}
 			}
 		}
 	}
@@ -333,6 +729,238 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"crit_amount"			"8"
+			}
+		}
+	
+	}
+	"item_brutalizer"
+	{
+		"ID"							"2033"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"brutalizer"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemQuality"					"component"
+	
+	
+		"Modifiers"
+		{
+			"modifier_brutalizer_unique_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				
+				"OnCreated" 
+				{
+					//Add CDR
+					"RunScript" 
+					{
+						"ScriptFile"		"items/utility.lua"
+						"Function"			"AddCDR"
+						"CDR"				"%cool_down_reduction"
+					}
+					"RunScript" 
+					{
+						"ScriptFile"		"items/utility.lua"
+						"Function"			"AddArmorPen"
+						"armorPen"			"%armorPen"
+					}
+				}
+				"OnDestroy"
+				{
+					//Remove CDR
+					"RunScript" 
+					{
+						"ScriptFile"		"items/utility.lua"
+						"Function"			"RemoveCDR"
+						"CDR"				"%cool_down_reduction"
+					}
+					"RunScript" 
+					{
+						"ScriptFile"		"items/utility.lua"
+						"Function"			"RemoveArmorPen"
+						"armorPen"			"%armorPen"
+					}
+				}
+			}
+		}
+	
+		"OnEquip"
+		{
+			
+			//Add AD
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"AddADItem"
+				"ad"					"%attack_damage"
+			}
+		}
+		"OnUnEquip"
+		{
+			//Remove AD
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"RemoveADItem"
+				"ad"					"%attack_damage"
+			}
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"cool_down_reduction"				"10"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"attack_damage"						"25"
+			}
+			"03"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"armorPen"							"10"
+			}
+		}
+	
+	}
+	"item_chain_vest"
+	{
+		"ID"							"2030"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"chain_vest"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"750"
+		"ItemQuality"					"component"
+	
+		//-------------------------------------------------------------------------------------------------------------
+		// Modifer 
+		//-------------------------------------------------------------------------------------------------------------
+		"Modifiers"
+		{
+			"modifier_chain_vest"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" 	"%armor"
+				}
+			} 
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"armor"					"6.667"
+			}
+		}
+	}
+	"item_chalice_of_harmony"
+	{
+		"ID"							"2031"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"chalice_of_harmony"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1000"
+		"ItemQuality"					"component"
+	
+		"Modifiers"
+		{
+			"modifier_chalice_of_harmony_stats"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"			"%mana_regen"
+				}
+			}
+			"modifier_chalice_of_harmony_unique_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+							
+				"ThinkInterval" 	"5"
+				"OnIntervalThink"  //Restore mana based on missing mana
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"items/manaFont.lua"
+						"Function"						"ManaFont"					
+					}
+				}
+			} 
+		}
+	
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"items/utility.lua"
+				"Function"						"AddMagicResistItem"
+				"magicResist"					"%magic_resistance"
+			}
+		}
+	
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"items/utility.lua"
+				"Function"						"RemoveMagicResistItem"
+				"magicResist"					"%magic_resistance"
+			}
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_regen"			"10"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"magic_resistance"		"25"
 			}
 		}
 	
@@ -429,6 +1057,64 @@
 				"armor"					"2.5"
 			}
 		}
+	}
+	"item_crystalline_bracer"
+	{
+		"ID"							"2032"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"crystalline_bracer"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"600"
+		"ItemQuality"					"component"
+	
+		"Modifiers"
+		{
+			"modifier_item_crystalline_bracer"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"Attributes" 		"MODIFIER_ATTRIBUTE_MULTIPLE"
+							
+				"ThinkInterval" 		".5"
+				"OnIntervalThink"  //Heal the owner based off of base HP regen.
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"items/utility.lua"
+						"Function"						"HP5Heal"
+						"healPercent"					"%healPercent"
+					}
+				}
+	
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health"
+				}
+			}
+		}
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"healPercent"			".50"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health"			"200"
+			}
+		}
+	
 	}
 	"item_doran_blade"
 	{
@@ -691,6 +1377,581 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"mana_regen"			"5"
+			}
+		}
+	
+	}
+	"item_fiendish_codex"
+	{
+		"ID"							"2034"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"fiendish_codex"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"820"
+		"ItemQuality"					"component"
+	
+	
+		"Modifiers"
+		{
+			"modifier_fiendish_codex_unique_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				
+				"OnCreated" 
+				{
+					//Add CDR
+					"RunScript" 
+					{
+						"ScriptFile"		"items/utility.lua"
+						"Function"			"AddCDR"
+						"CDR"				"%cool_down_reduction"
+					}
+				}
+				"OnDestroy"
+				{
+					//Remove CDR
+					"RunScript" 
+					{
+						"ScriptFile"		"items/utility.lua"
+						"Function"			"RemoveCDR"
+						"CDR"				"%cool_down_reduction"
+					}
+				}
+			}
+		}
+	
+		"OnEquip"
+		{
+			
+			//Add AP
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"AddAPItem"
+				"ap"					"%ability_power"
+			}
+		}
+		"OnUnEquip"
+		{
+			//Remove AP
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"RemoveAPItem"
+				"ap"					"%ability_power"
+			}
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"cool_down_reduction"				"10"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"ability_power"						"30"
+			}
+		}
+	
+	}
+	"item_frostfang"
+	{
+		"ID"							"2035"
+	
+		//Item Grants AP and mana Regen, 1 gold every 5 seconds, and a named passive called tribute 
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"frostfang"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"865"
+		"ItemQuality"					"component"
+	
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/tributeBuff.lua"
+				"Function"				"tributeStartBuff"
+			}
+	
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"AddAPItem"
+				"ap"					"%ability_power"
+			}
+		}
+	
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/tributeBuff.lua"
+				"Function"				"tributeEndBuff"
+			}
+	
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"RemoveAPItem"
+				"ap"					"%ability_power"
+			}
+		}
+	
+		"Modifiers"
+		{
+			"modifier_tribute_broken"
+			{
+				"TextureName" 			"brewmaster_storm_dispel_magic" 
+				"IsHidden"				"1"
+			}
+			"modifier_tribute_stack_counter_datadriven"
+			{
+				"Passive"				"1"
+				"IsHidden"				"0"
+				"IsPurgable"			"0"
+				"IsDebuff"				"0"
+	
+				"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"
+	
+				"OnDealDamage"
+				{	
+					"RunScript"
+					{
+						"ScriptFile"			"items/tributeBuff.lua"
+						"Function"				"tribute_fire"
+					}
+				}
+			}
+	
+			"modifier_tribute_aura"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+		
+				"Aura"					"modifier_tribute_aura_enemy"
+				"Aura_Radius"			"2000"
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
+				"Aura_ApplyToCaster" 	"0"
+			}
+	
+			"modifier_tribute_aura_enemy"
+			{
+				"IsBuff"			"0"
+				"IsHidden"			"1"
+	
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"items/tributeBuff.lua"
+						"Function"			"tribute_break"
+					}
+				}			
+			}
+	
+			"modifier_frostfang_passive"
+			{
+				"Passive"				"1"
+				"IsHidden"				"1"
+				"IsDebuff"				"0"
+			
+				"ThinkInterval" 		"5"
+				"OnIntervalThink"  //Give 2 gold per 10 seconds
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"items/utility.lua"
+						"Function"						"GrantGold"
+						"goldAmount"					"%extra_gold / 2"
+					}
+				}
+	
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"		"%bonus_mana_regen"
+				}
+			}
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_regen_percent"	"10"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"break_time"			"12.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"maximum_charges"		"3"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"charge_replenish_time"	"10.0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"15"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"extra_gold"			"2"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ability_power"   		"10"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tribute_gold"   		"10"
+			}
+		}
+	
+	}
+	"item_giants_belt"
+	{
+		"ID"							"2036"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"giants_belt"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1000"
+		"ItemQuality"					"component"
+	
+		"Modifiers"
+		{
+			"modifier_giants_belt"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health"
+				}
+			} 
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health"			"380"
+			}
+		}
+	
+	}
+	"item_glacial_shroud"
+	{
+		"ID"							"2037"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"glacial_shroud"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"820"
+		"ItemQuality"					"component"
+	
+	
+		"Modifiers"
+		{
+			"modifier_glacial_shroud_unique_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				
+				"OnCreated" 
+				{
+					//Add CDR
+					"RunScript" 
+					{
+						"ScriptFile"		"items/utility.lua"
+						"Function"			"AddCDR"
+						"CDR"				"%cool_down_reduction"
+					}
+				}
+				"OnDestroy"
+				{
+					//Remove CDR
+					"RunScript" 
+					{
+						"ScriptFile"		"items/utility.lua"
+						"Function"			"RemoveCDR"
+						"CDR"				"%cool_down_reduction"
+					}
+				}
+			}
+			"modifier_glacial_shroud_stackable_passive"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_BONUS"					"%bonus_mana"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" 		"%armor"
+				}
+			}
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"cool_down_reduction"			"10"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"armor"							"3.333"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_mana"					"250"
+			}
+		}
+	
+	}
+	"item_guardians_horn"
+	{
+		"ID"							"2038"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"guardians_horn"
+		"AbilityCooldown"				"25.0"
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+			"particle"			"particles/units/heroes/hero_sven/sven_spell_warcry.vpcf"
+			"particle"			"particles/units/heroes/hero_sven/sven_warcry_buff.vpcf"
+		}
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1025"
+		"ItemQuality"					"component"
+	
+		"OnSpellStart"
+		{
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Center" "CASTER"
+	                "Radius" "%effect_radius"
+	                "Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY" 
+	                "Types" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				}
+	
+				"Action"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_guardians_horn_buff"
+						"Target"		"TARGET"
+					}
+				}
+			}
+	
+			"FireSound"
+			{
+				"EffectName"	"Hero_Sven.WarCry"
+				"Target"		"CASTER"
+			}
+	
+			"FireEffect"
+			{
+				"EffectName"	"particles/units/heroes/hero_sven/sven_spell_warcry.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Target"		"CASTER"
+			}
+		}
+	
+		"Modifiers"
+		{
+			"modifier_guardians_horn_stackable_passive"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_BONUS"				"%bonus_health"
+				}
+	
+				"ThinkInterval" 		".5"
+				"OnIntervalThink"  //Heal the owner based off of base HP regen.
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"items/utility.lua"
+						"Function"						"HP5Heal"
+						"healPercent"					"%healPercent"
+					}
+				}
+			}
+			"modifier_guardians_horn_datadriven_aura_emitter"
+			{
+				"Passive"				"1"
+				"IsHidden"				"0"
+				
+				"Aura" 					"modifier_guardians_horn_datadriven_aura"
+				"Aura_Radius" 			"%effect_radius"
+				"Aura_Teams" 			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types" 			"DOTA_UNIT_TARGET_HERO"
+				"Aura_Flags" 			"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster" 	"0"
+			}
+			"modifier_guardians_horn_datadriven_aura"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"Attributes" 		"MODIFIER_ATTRIBUTE_MULTIPLE"
+				
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"items/guardiansHorn.lua"
+						"Function"				"guardiansHorn"
+					}
+				}
+			}
+			"modifier_guardians_horn_buff"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"			
+				"Duration"			"%active_duration"
+	
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"				"%bonus_speed"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"					"%bonus_armor"
+				}
+				"OnCreated" 
+				{
+					//Add MR
+					"RunScript" 
+					{
+						"ScriptFile"				"items/utility.lua"
+						"Function"					"AddMagicResistItem"
+						"magicResist"				"%magic_resistance"
+					}
+				}
+				"OnDestroy"
+				{
+					//Remove MR
+					"RunScript" 
+					{
+						"ScriptFile"				"items/utility.lua"
+						"Function"					"RemoveMagicResistItem"
+					"magicResist"					"%magic_resistance"
+					}
+				}
+	
+			}
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"healPercent"					"1.25"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_health"					"200"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"effect_radius"					"1100"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_speed"					"30"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_armor"					"3.333"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"magic_resistance"				"20"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"active_duration"				"3"
 			}
 		}
 	
@@ -1731,7 +2992,7 @@
 				"IsDebuff"				"0"
 			
 				"ThinkInterval" 		"5"
-				"OnIntervalThink"  //Heal the owner based off of base HP regen.
+				"OnIntervalThink"  //Give 2 gold per 10 seconds
 				{
 					"RunScript"
 					{

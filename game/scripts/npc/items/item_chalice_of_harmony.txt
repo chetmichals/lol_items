@@ -1,0 +1,83 @@
+"item_chalice_of_harmony"
+{
+	"ID"							"2031"
+
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"BaseClass"						"item_datadriven"
+	"AbilityTextureName"			"chalice_of_harmony"
+
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"						"1000"
+	"ItemQuality"					"component"
+
+	"Modifiers"
+	{
+		"modifier_chalice_of_harmony_stats"
+		{
+			"Passive"  "1"
+			"IsHidden" "1" 
+			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"			"%mana_regen"
+			}
+		}
+		"modifier_chalice_of_harmony_unique_passive"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+						
+			"ThinkInterval" 	"5"
+			"OnIntervalThink"  //Restore mana based on missing mana
+			{
+				"RunScript"
+				{
+					"ScriptFile"					"items/manaFont.lua"
+					"Function"						"ManaFont"					
+				}
+			}
+		} 
+	}
+
+	"OnEquip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"					"items/utility.lua"
+			"Function"						"AddMagicResistItem"
+			"magicResist"					"%magic_resistance"
+		}
+	}
+
+	"OnUnequip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"					"items/utility.lua"
+			"Function"						"RemoveMagicResistItem"
+			"magicResist"					"%magic_resistance"
+		}
+	}
+
+	
+	//-------------------------------------------------------------------------------------------------------------
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"mana_regen"			"10"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"magic_resistance"		"25"
+		}
+	}
+
+}

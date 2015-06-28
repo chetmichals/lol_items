@@ -13,10 +13,11 @@ end
 
 loadModule ( 'util' )
 
+
+
 function RestoreMana(keys)
 	keys.caster:GetPlayerOwner():GetAssignedHero():GiveMana(keys.manaAmount)
 end
-
 
 
 
@@ -34,38 +35,7 @@ function AddCrit(keys)
 	critCount = keys.critAmount + critCount
 	criticleHit:SetStackCount(critCount)
 
-	playerHero:RemoveModifierByName("modifier_lol_crit_chance_one")
-	playerHero:RemoveModifierByName("modifier_lol_crit_chance_two")
-	playerHero:RemoveModifierByName("modifier_lol_crit_chance_three")
-	playerHero:RemoveModifierByName("modifier_lol_crit_chance_four")
-	playerHero:RemoveModifierByName("modifier_lol_crit_chance_five")
-
-	crit_Buff = CreateItem("item_modifier_crit", nil, nil)
-
-
-	if (critCount > 80) then
-		abilityLevel = critCount - 80
-		crit_Buff:SetLevel(abilityLevel)
-		crit_Buff:ApplyDataDrivenModifier(playerHero,playerHero,"modifier_lol_crit_chance_five",nil)
-	elseif (critCount > 60) then
-		abilityLevel = critCount - 60
-		crit_Buff:SetLevel(abilityLevel)
-		crit_Buff:ApplyDataDrivenModifier(playerHero,playerHero,"modifier_lol_crit_chance_four",nil)
-	elseif (critCount > 40) then
-		abilityLevel = critCount - 40
-		crit_Buff:SetLevel(abilityLevel)
-		crit_Buff:ApplyDataDrivenModifier(playerHero,playerHero,"modifier_lol_crit_chance_three",nil)
-	elseif (critCount > 20) then
-		abilityLevel = critCount - 20
-		crit_Buff:SetLevel(abilityLevel)
-		crit_Buff:ApplyDataDrivenModifier(playerHero,playerHero,"modifier_lol_crit_chance_two",nil)
-	elseif (critCount > 0) then	
-		abilityLevel = critCount
-		crit_Buff:SetLevel(abilityLevel)
-		crit_Buff:ApplyDataDrivenModifier(playerHero,playerHero,"modifier_lol_crit_chance_one",nil)
-	end
-	UTIL_RemoveImmediate(crit_Buff)
-	crit_Buff = nil
+	PlaceCritBuff(keys)
 end
 
 
@@ -84,6 +54,20 @@ function RemoveCrit(keys)
 	if critCount < 0 then critCount = 0 end
 	criticleHit:SetStackCount(critCount)
 
+	PlaceCritBuff(keys)
+end
+
+function ApplyCrit(keys)
+	playerHero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	crit_Buff = CreateItem("item_modifier_crit", nil, nil)
+	crit_Buff:ApplyDataDrivenModifier(playerHero,playerHero,"modifier_lol_basic_crit",nil)
+	UTIL_RemoveImmediate(crit_Buff)
+	crit_Buff = nil
+end
+
+function PlaceCritBuff(keys)
+	playerHero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	
 	playerHero:RemoveModifierByName("modifier_lol_crit_chance_one")
 	playerHero:RemoveModifierByName("modifier_lol_crit_chance_two")
 	playerHero:RemoveModifierByName("modifier_lol_crit_chance_three")
@@ -92,7 +76,11 @@ function RemoveCrit(keys)
 
 	crit_Buff = CreateItem("item_modifier_crit", nil, nil)
 
-	if (critCount > 80) then
+	if (critCount > 100) then -- Critlce hit chance can't be "above" 100
+		abilityLevel = 20
+		crit_Buff:SetLevel(abilityLevel)
+		crit_Buff:ApplyDataDrivenModifier(playerHero,playerHero,"modifier_lol_crit_chance_five",nil)
+	elseif (critCount > 80) then
 		abilityLevel = critCount - 80
 		crit_Buff:SetLevel(abilityLevel)
 		crit_Buff:ApplyDataDrivenModifier(playerHero,playerHero,"modifier_lol_crit_chance_five",nil)
@@ -117,12 +105,64 @@ function RemoveCrit(keys)
 	crit_Buff = nil
 end
 
-function ApplyCrit(keys)
-	playerHero = keys.caster:GetPlayerOwner():GetAssignedHero()
-	crit_Buff = CreateItem("item_modifier_crit", nil, nil)
-	crit_Buff:ApplyDataDrivenModifier(playerHero,playerHero,"modifier_lol_basic_crit",nil)
-	UTIL_RemoveImmediate(crit_Buff)
-	crit_Buff = nil
+
+
+function AddCDR(keys)
+	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	if hero.coolDownReduction == nil then
+		hero.coolDownReduction = 0
+	end
+	hero.coolDownReduction = hero.coolDownReduction + keys.CDR
+	--SetMagicResistance(hero)
+end
+
+
+function RemoveCDR(keys)
+	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	if hero.coolDownReduction == nil then
+		hero.coolDownReduction = 0
+	end
+	hero.coolDownReduction = hero.coolDownReduction - keys.CDR
+	--SetMagicResistance(hero)
+end
+
+
+function AddArmorPen(keys)
+	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	if hero.armorPenetration == nil then
+		hero.armorPenetration = 0
+	end
+	hero.armorPenetration = hero.armorPenetration + keys.armorPen
+	--SetMagicResistance(hero)
+end
+
+
+function RemoveArmorPen(keys)
+	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	if hero.armorPenetration == nil then
+		hero.armorPenetration = 0
+	end
+	hero.armorPenetration = hero.armorPenetration - keys.armorPen
+	--SetMagicResistance(hero)
+end
+
+function AddMagicPen(keys)
+	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	if hero.magicPenetration == nil then
+		hero.magicPenetration = 0
+	end
+	hero.magicPenetration = hero.magicPenetration + keys.magicPen
+	--SetMagicResistance(hero)
+end
+
+
+function RemoveMagicPen(keys)
+	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	if hero.magicPenetration == nil then
+		hero.magicPenetration = 0
+	end
+	hero.magicPenetration = hero.magicPenetration - keys.magicPen
+	--SetMagicResistance(hero)
 end
 
 function AddMagicResistItem(keys)
@@ -137,7 +177,7 @@ end
 function RemoveMagicResistItem(keys)
 	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
 	if hero.magicResistance == nil then
-		hero.magicResistance = 100
+		hero.magicResistance = 0
 	end
 	hero.magicResistance = hero.magicResistance - keys.magicResist
 	SetMagicResistance(hero)
@@ -155,7 +195,7 @@ end
 function RemoveMagicResistAura(keys)
 	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
 	if hero.magicResistance == nil then
-		hero.magicResistance = 100
+		hero.magicResistance = 0
 	end
 	hero.magicResistance = hero.magicResistance - keys.magicResist
 	SetMagicResistance(hero)
@@ -232,4 +272,16 @@ end
 
 function GrantGold(keys)
 	keys.caster:ModifyGold(keys.goldAmount, false, 0)
+end
+
+function debugStuff(keys)
+	PrintTable(keys)
+	modCount = keys.caster:GetModifierCount()
+	print(modCount)
+	for i=0, modCount do
+		print (keys.caster:GetModifierNameByIndex(i))
+	end
+	--coreMod = keys.caster:FindModifierByName("modifier_item_octarine_core")
+	--PrintTable (coreMod)
+	--print (coreMod:GetClass())
 end

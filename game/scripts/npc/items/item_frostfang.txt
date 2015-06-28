@@ -1,0 +1,176 @@
+"item_frostfang"
+{
+	"ID"							"2035"
+
+	//Item Grants AP and mana Regen, 1 gold every 5 seconds, and a named passive called tribute 
+
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"BaseClass"						"item_datadriven"
+	"AbilityTextureName"			"frostfang"
+
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"						"865"
+	"ItemQuality"					"component"
+
+	"OnEquip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/tributeBuff.lua"
+			"Function"				"tributeStartBuff"
+		}
+
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"AddAPItem"
+			"ap"					"%ability_power"
+		}
+	}
+
+	"OnUnequip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/tributeBuff.lua"
+			"Function"				"tributeEndBuff"
+		}
+
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"RemoveAPItem"
+			"ap"					"%ability_power"
+		}
+	}
+
+	"Modifiers"
+	{
+		"modifier_tribute_broken"
+		{
+			"TextureName" 			"brewmaster_storm_dispel_magic" 
+			"IsHidden"				"1"
+		}
+		"modifier_tribute_stack_counter_datadriven"
+		{
+			"Passive"				"1"
+			"IsHidden"				"0"
+			"IsPurgable"			"0"
+			"IsDebuff"				"0"
+
+			"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"
+
+			"OnDealDamage"
+			{	
+				"RunScript"
+				{
+					"ScriptFile"			"items/tributeBuff.lua"
+					"Function"				"tribute_fire"
+				}
+			}
+		}
+
+		"modifier_tribute_aura"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"IsDebuff"			"0"
+	
+			"Aura"					"modifier_tribute_aura_enemy"
+			"Aura_Radius"			"2000"
+			"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+			"Aura_Types"			"DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
+			"Aura_ApplyToCaster" 	"0"
+		}
+
+		"modifier_tribute_aura_enemy"
+		{
+			"IsBuff"			"0"
+			"IsHidden"			"1"
+
+			"OnDeath"
+			{
+				"RunScript"
+				{
+					"ScriptFile"		"items/tributeBuff.lua"
+					"Function"			"tribute_break"
+				}
+			}			
+		}
+
+		"modifier_frostfang_passive"
+		{
+			"Passive"				"1"
+			"IsHidden"				"1"
+			"IsDebuff"				"0"
+		
+			"ThinkInterval" 		"5"
+			"OnIntervalThink"  //Give 2 gold per 10 seconds
+			{
+				"RunScript"
+				{
+					"ScriptFile"					"items/utility.lua"
+					"Function"						"GrantGold"
+					"goldAmount"					"%extra_gold / 2"
+				}
+			}
+
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"		"%bonus_mana_regen"
+			}
+		}
+	}
+
+	
+	//-------------------------------------------------------------------------------------------------------------
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"mana_regen_percent"	"10"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"break_time"			"12.0"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"maximum_charges"		"3"
+		}
+		"04"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"charge_replenish_time"	"10.0"
+		}
+		"05"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_damage"			"15"
+		}
+		"06"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"extra_gold"			"2"
+		}
+		"07"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"ability_power"   		"10"
+		}
+		"08"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"tribute_gold"   		"10"
+		}
+	}
+
+}

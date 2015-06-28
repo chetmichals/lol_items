@@ -1,0 +1,57 @@
+"item_box_of_bugs"
+{
+	"ID"							"2500"
+
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"BaseClass"						"item_datadriven"
+	"AbilityTextureName"			"box_of_bugs"
+
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"						"10"
+	"ItemQuality"					"component"
+
+	"OnEquip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"debugStuff"
+		}
+	}
+	"Modifiers"
+	{
+		"modifier_cooldownTest"
+		{
+			"Passive"  "1"
+			"IsHidden" "1" 
+			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"			"50"
+			}
+		}
+		"modifier_cooldownTest_2"
+		{
+			"Passive"  "1"
+			"IsHidden" "1" 
+			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"			"75"
+			}
+		}
+		"modifier_cooldownTest_3"
+		{
+			"Passive"  "1"
+			"IsHidden" "1" 
+			"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"			"10"
+			}
+		}
+	}
+}

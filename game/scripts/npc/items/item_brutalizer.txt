@@ -1,0 +1,104 @@
+"item_brutalizer"
+{
+	"ID"							"2033"
+
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"BaseClass"						"item_datadriven"
+	"AbilityTextureName"			"brutalizer"
+
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"						"100"
+	"ItemQuality"					"component"
+
+
+	"Modifiers"
+	{
+		"modifier_brutalizer_unique_passive"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			
+			"OnCreated" 
+			{
+				//Add CDR
+				"RunScript" 
+				{
+					"ScriptFile"		"items/utility.lua"
+					"Function"			"AddCDR"
+					"CDR"				"%cool_down_reduction"
+				}
+				"RunScript" 
+				{
+					"ScriptFile"		"items/utility.lua"
+					"Function"			"AddArmorPen"
+					"armorPen"			"%armorPen"
+				}
+			}
+			"OnDestroy"
+			{
+				//Remove CDR
+				"RunScript" 
+				{
+					"ScriptFile"		"items/utility.lua"
+					"Function"			"RemoveCDR"
+					"CDR"				"%cool_down_reduction"
+				}
+				"RunScript" 
+				{
+					"ScriptFile"		"items/utility.lua"
+					"Function"			"RemoveArmorPen"
+					"armorPen"			"%armorPen"
+				}
+			}
+		}
+	}
+
+	"OnEquip"
+	{
+		
+		//Add AD
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"AddADItem"
+			"ad"					"%attack_damage"
+		}
+	}
+	"OnUnEquip"
+	{
+		//Remove AD
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"RemoveADItem"
+			"ad"					"%attack_damage"
+		}
+	}
+
+	
+	//-------------------------------------------------------------------------------------------------------------
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"							"FIELD_INTEGER"
+			"cool_down_reduction"				"10"
+		}
+		"02"
+		{
+			"var_type"							"FIELD_INTEGER"
+			"attack_damage"						"25"
+		}
+		"03"
+		{
+			"var_type"							"FIELD_INTEGER"
+			"armorPen"							"10"
+		}
+	}
+
+}
