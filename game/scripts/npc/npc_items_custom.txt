@@ -1956,6 +1956,191 @@
 		}
 	
 	}
+	"item_haunting_guise"
+	{
+		"ID"							"2039"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"haunting_guise"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"500"
+		"ItemQuality"					"component"
+	
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"AddAPItem"
+				"ap"					"%ability_power"
+			}
+		}
+	
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"RemoveAPItem"
+				"ap"					"%ability_power"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_haunting_guise"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health"
+				}
+			}
+			"modifier_haunting_guise_unique_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				
+				"OnCreated" 
+				{
+					//Add magicPen
+					"RunScript" 
+					{
+						"ScriptFile"			"items/utility.lua"
+						"Function"				"AddMagicPen"
+						"magicPen"				"%magic_penitration"
+					}
+				}
+				"OnDestroy"
+				{
+					//Remove magicPen
+					"RunScript" 
+					{
+						"ScriptFile"			"items/utility.lua"
+						"Function"				"RemoveMagicPen"
+						"magicPen"				"%magic_penitration"
+					}
+				}
+			}
+	
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"ability_power"				"25"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_health"				"200"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"magic_penitration"			"15"
+			}
+		}
+	
+	}
+	"item_hextech_revolver"
+	{
+		"ID"							"2042"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"hextech_revolver"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemQuality"					"component"
+	
+		//-------------------------------------------------------------------------------------------------------------
+		// Modifer 
+		//-------------------------------------------------------------------------------------------------------------
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"AddAPItem"
+				"ap"					"%ability_power"
+			}
+		}
+	
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"RemoveAPItem"
+				"ap"					"%ability_power"
+			}
+		}
+	
+		"Modifiers"
+		{
+			"modifier_haunting_guise_unique_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				
+				"OnCreated" 
+				{
+					//Add spell Vamp
+					"RunScript" 
+					{
+						"ScriptFile"			"items/utility.lua"
+						"Function"				"AddMagicPen"
+						"spellVamp"				"%spell_vamp"
+					}
+				}
+				"OnDestroy"
+				{
+					//Remove spell vamp
+					"RunScript" 
+					{
+						"ScriptFile"			"items/utility.lua"
+						"Function"				"RemoveMagicPen"
+						"spellVamp"				"%spell_vamp"
+					}
+				}
+			}
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"ability_power"				"40"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"spell_vamp"				"12"	
+			}
+		}
+	}
 	"item_hunters_machete"
 	{
 		"ID"							"2021"
@@ -2114,6 +2299,238 @@
 				}
 			}
 		}
+	}
+	"item_ionian_boots_of_lucidity"
+	{
+		"ID"							"2043"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"ionian_boots_of_lucidity"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"850"
+		"ItemQuality"					"component"
+	
+	
+		"Modifiers"
+		{
+			"modifier_ionian_boots_unique_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				
+				"OnCreated" 
+				{
+					//Add CDR
+					"RunScript" 
+					{
+						"ScriptFile"		"items/utility.lua"
+						"Function"			"AddCDR"
+						"CDR"				"%cool_down_reduction"
+					}
+				}
+				"OnDestroy"
+				{
+					//Remove CDR
+					"RunScript" 
+					{
+						"ScriptFile"		"items/utility.lua"
+						"Function"			"RemoveCDR"
+						"CDR"				"%cool_down_reduction"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" 	"%bonus_move_speed"
+				}
+			}
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"cool_down_reduction"				"15"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"bonus_move_speed"					"45"
+			}
+		}
+	
+	}
+	"item_kindlegem"
+	{
+		"ID"							"2040"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"kindlegem"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"850"
+		"ItemQuality"					"component"
+	
+	
+		"Modifiers"
+		{
+			"modifier_kindlegem_unique_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				
+				"OnCreated" 
+				{
+					//Add CDR
+					"RunScript" 
+					{
+						"ScriptFile"		"items/utility.lua"
+						"Function"			"AddCDR"
+						"CDR"				"%cool_down_reduction"
+					}
+				}
+				"OnDestroy"
+				{
+					//Remove CDR
+					"RunScript" 
+					{
+						"ScriptFile"		"items/utility.lua"
+						"Function"			"RemoveCDR"
+						"CDR"				"%cool_down_reduction"
+					}
+				}
+			}
+			"modifier_kindlegem"
+			{
+				"Passive"  "1"
+				"IsHidden" "1" 
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health"
+				}
+			} 
+		}
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"cool_down_reduction"				"10"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"bonus_health"						"200"
+			}
+		}
+	
+	}
+	"item_last_whisper"
+	{
+		"ID"							"2044"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"last_whisper"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemQuality"					"component"
+	
+	
+		"Modifiers"
+		{
+			"modifier_last_whisper_unique_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				
+				"OnCreated" 
+				{
+					"RunScript" 
+					{
+						"ScriptFile"				"items/utility.lua"
+						"Function"					"AddArmorPenPercent"
+						"armorPenPercent"			"%percent_armor_penetration"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript" 
+					{
+						"ScriptFile"				"items/utility.lua"
+						"Function"					"RemoveArmorPercent"
+						"armorPenPercent"			"%percent_armor_penetration"
+					}
+				}
+			}
+		}
+	
+		"OnEquip"
+		{
+			
+			//Add AD
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"AddADItem"
+				"ad"					"%attack_damage"
+			}
+		}
+		"OnUnEquip"
+		{
+			//Remove AD
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"RemoveADItem"
+				"ad"					"%attack_damage"
+			}
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"cool_down_reduction"				"10"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"attack_damage"						"40"
+			}
+			"03"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"percent_armor_penetration"			"35"
+			}
+		}
+	
 	}
 	"item_long_sword"
 	{
@@ -2315,7 +2732,7 @@
 				"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"   "150"
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"   "200"
 				}
 				
 				"OnAttackLanded"
@@ -2414,6 +2831,55 @@
 				"ability_power"		"80"
 			}
 		}
+	}
+	"item_negatron_cloak"
+	{
+		"ID"							"2041"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"negatron_cloak"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"850"
+		"ItemQuality"					"component"
+	
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"AddMagicResistItem"
+				"magicResist"					"%magic_resistance"
+			}
+		}
+	
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"items/utility.lua"
+				"Function"				"RemoveMagicResistItem"
+				"magicResist"					"%magic_resistance"
+			}
+		}
+	
+		
+		//-------------------------------------------------------------------------------------------------------------
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"magic_resistance"		"45"
+			}
+		}
+	
 	}
 	"item_null_magic_mantle"
 	{

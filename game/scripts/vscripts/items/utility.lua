@@ -146,6 +146,44 @@ function RemoveArmorPen(keys)
 	--SetMagicResistance(hero)
 end
 
+function AddArmorPenPercent(keys)
+	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	if hero.armorPenetrationPercent == nil then
+		hero.armorPenetrationPercent = 0
+	end
+	hero.armorPenetrationPercent = hero.armorPenetrationPercent + keys.armorPenPercent
+	--SetMagicResistance(hero)
+end
+
+
+function RemoveArmorPercent(keys)
+	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	if hero.armorPenetrationPercent == nil then
+		hero.armorPenetrationPercent = 0
+	end
+	hero.armorPenetrationPercent = hero.armorPenetrationPercent - keys.armorPenPercent
+	--SetMagicResistance(hero)
+end
+
+function AddSpellVamp(keys)
+	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	if hero.spellVamp == nil then
+		hero.spellVamp = 0
+	end
+	hero.spellVamp = hero.spellVamp + keys.spellVamp
+	--SetMagicResistance(hero)
+end
+
+
+function RemoveSpellVamp(keys)
+	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	if hero.spellVamp == nil then
+		hero.spellVamp = 0
+	end
+	hero.spellVamp = hero.spellVamp - keys.spellVamp
+	--SetMagicResistance(hero)
+end
+
 function AddMagicPen(keys)
 	hero = keys.caster:GetPlayerOwner():GetAssignedHero()
 	if hero.magicPenetration == nil then

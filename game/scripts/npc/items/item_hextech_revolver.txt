@@ -1,0 +1,86 @@
+"item_hextech_revolver"
+{
+	"ID"							"2042"
+
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"BaseClass"						"item_datadriven"
+	"AbilityTextureName"			"hextech_revolver"
+
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"						"100"
+	"ItemQuality"					"component"
+
+	//-------------------------------------------------------------------------------------------------------------
+	// Modifer 
+	//-------------------------------------------------------------------------------------------------------------
+	"OnEquip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"AddAPItem"
+			"ap"					"%ability_power"
+		}
+	}
+
+	"OnUnequip"
+	{
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"RemoveAPItem"
+			"ap"					"%ability_power"
+		}
+	}
+
+	"Modifiers"
+	{
+		"modifier_haunting_guise_unique_passive"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			
+			"OnCreated" 
+			{
+				//Add spell Vamp
+				"RunScript" 
+				{
+					"ScriptFile"			"items/utility.lua"
+					"Function"				"AddMagicPen"
+					"spellVamp"				"%spell_vamp"
+				}
+			}
+			"OnDestroy"
+			{
+				//Remove spell vamp
+				"RunScript" 
+				{
+					"ScriptFile"			"items/utility.lua"
+					"Function"				"RemoveMagicPen"
+					"spellVamp"				"%spell_vamp"
+				}
+			}
+		}
+	}
+
+	
+	//-------------------------------------------------------------------------------------------------------------
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"ability_power"				"40"
+		}
+		"02"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"spell_vamp"				"12"	
+		}
+	}
+}

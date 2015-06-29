@@ -1,0 +1,68 @@
+"item_ionian_boots_of_lucidity"
+{
+	"ID"							"2043"
+
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"BaseClass"						"item_datadriven"
+	"AbilityTextureName"			"ionian_boots_of_lucidity"
+
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"						"850"
+	"ItemQuality"					"component"
+
+
+	"Modifiers"
+	{
+		"modifier_ionian_boots_unique_passive"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			
+			"OnCreated" 
+			{
+				//Add CDR
+				"RunScript" 
+				{
+					"ScriptFile"		"items/utility.lua"
+					"Function"			"AddCDR"
+					"CDR"				"%cool_down_reduction"
+				}
+			}
+			"OnDestroy"
+			{
+				//Remove CDR
+				"RunScript" 
+				{
+					"ScriptFile"		"items/utility.lua"
+					"Function"			"RemoveCDR"
+					"CDR"				"%cool_down_reduction"
+				}
+			}
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" 	"%bonus_move_speed"
+			}
+		}
+	}
+	
+	//-------------------------------------------------------------------------------------------------------------
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"							"FIELD_INTEGER"
+			"cool_down_reduction"				"15"
+		}
+		"02"
+		{
+			"var_type"							"FIELD_INTEGER"
+			"bonus_move_speed"					"45"
+		}
+	}
+
+}

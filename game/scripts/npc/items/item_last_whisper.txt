@@ -1,0 +1,90 @@
+"item_last_whisper"
+{
+	"ID"							"2044"
+
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"BaseClass"						"item_datadriven"
+	"AbilityTextureName"			"last_whisper"
+
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"						"100"
+	"ItemQuality"					"component"
+
+
+	"Modifiers"
+	{
+		"modifier_last_whisper_unique_passive"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			
+			"OnCreated" 
+			{
+				"RunScript" 
+				{
+					"ScriptFile"				"items/utility.lua"
+					"Function"					"AddArmorPenPercent"
+					"armorPenPercent"			"%percent_armor_penetration"
+				}
+			}
+			"OnDestroy"
+			{
+				"RunScript" 
+				{
+					"ScriptFile"				"items/utility.lua"
+					"Function"					"RemoveArmorPercent"
+					"armorPenPercent"			"%percent_armor_penetration"
+				}
+			}
+		}
+	}
+
+	"OnEquip"
+	{
+		
+		//Add AD
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"AddADItem"
+			"ad"					"%attack_damage"
+		}
+	}
+	"OnUnEquip"
+	{
+		//Remove AD
+		"RunScript"
+		{
+			"ScriptFile"			"items/utility.lua"
+			"Function"				"RemoveADItem"
+			"ad"					"%attack_damage"
+		}
+	}
+
+	
+	//-------------------------------------------------------------------------------------------------------------
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"							"FIELD_INTEGER"
+			"cool_down_reduction"				"10"
+		}
+		"02"
+		{
+			"var_type"							"FIELD_INTEGER"
+			"attack_damage"						"40"
+		}
+		"03"
+		{
+			"var_type"							"FIELD_INTEGER"
+			"percent_armor_penetration"			"35"
+		}
+	}
+
+}
